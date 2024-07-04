@@ -85,9 +85,6 @@ https://questant.jp/s/9R32RGRZTJMP5WAQ
 - [ ] いいね機能
     - ユーザーが気になるお店にいいねできる機能
     - マイページで自身がいいねした投稿一覧を表示できるようにする
-- [ ] いいね機能
-    - ユーザーが気になるお店にいいねできる機能
-    - マイページで自身がいいねした投稿一覧を表示できるようにする
 - [ ] Xシェア機能
     - 各投稿をシェアできる機能の実装
 
@@ -98,7 +95,7 @@ https://questant.jp/s/9R32RGRZTJMP5WAQ
     - Googleアカウントを使用したユーザー認証
 - [ ] 投稿件数のバッチ機能
     - 投稿件数やエリア、ジャンルに応じてバッチを付与
-- [ ]Xシェアの動的OGPの実装
+- [ ] Xシェアの動的OGPの実装
     - 写真の投稿があった際にはそれをOGP画像として表示できるようにする
 - [ ] ユーザー情報の追加
     - 各ユーザーの年齢や性別を登録できるようにして投稿に反映する
@@ -114,3 +111,6 @@ https://questant.jp/s/9R32RGRZTJMP5WAQ
 | DB | PostgreSQL |
 | 開発環境 | Docker |
 | API | Google Maps API / Google Maps JavaScript API / Geolocation API|
+
+## ■ 画面遷移図
+https://www.figma.com/design/MjY3Xjh4caHqLA78iD3zfW/metime_meals_画面遷移図?node-id=0-1
