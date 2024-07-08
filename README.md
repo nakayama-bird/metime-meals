@@ -114,3 +114,7 @@ https://questant.jp/s/9R32RGRZTJMP5WAQ
 
 ## ■ 画面遷移図
 https://www.figma.com/design/MjY3Xjh4caHqLA78iD3zfW/metime_meals_画面遷移図?node-id=0-1
+
+## ■ ER図
+詳細は[こちら](https://dbdiagram.io/d/metimez_meals-668689079939893dae0b800b)
+![metimez_meals](https://github.com/nakayama-bird/metime-meals/assets/153979354/960065c9-a878-4c68-a9fa-1fd4054659c6)
