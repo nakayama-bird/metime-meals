@@ -1,2 +1,15 @@
-<h1 class="bg-primary">Staticpages#top</h1>
-<p>Find me in app/views/staticpages/top.html.erb</p>
+<div class = "hero min-h-screen bg-base-100">
+  <div class= "hero-content flex-col lg:flex-row-reverse">
+    <%= image_tag "top.png" %>
+    <div>
+      <h1 class="text-5xl font-bold"><%= "Me Time Meals" %></h1>
+      <p class="py-6"><%= "「おひとり様外食」に特化した飲食店投稿アプリです。"%><br>
+      <%= "一人だからこそ快適な空間で、周りを機にすることなく"%><br>
+      <%= "食事を楽しめる飲食店を探したい！という願いを叶えます"%><br>
+      </p>
+      <button class="btn btn-primary">
+        <%= link_to 'はじめてみる', "#"  %>
+      </button>
+    </div>
+  </div>
+</div>
