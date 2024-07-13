@@ -1,0 +1,28 @@
+<header>
+  <div class="navbar bg-base-200">
+    <div class="flex-1">
+      <div class="btn-ghost font-bold sm:text-lg">
+        <%= link_to "Me Time Meals", root_path, class: "ml-3" %>
+      </div>
+    </div>
+    <div class="flex-none">
+      <ul class="menu menu-horizontal px-1">
+        <li>
+          <%= link_to "ログイン", "#" %>
+        </li>
+        <li>
+          <details>
+            <summary>
+              <%= link_to "メニュー" %>
+            </summary>
+              <ul class="p-2 bg-base-200 rounded-t-none z-50">
+                <li><%= link_to "一覧で探す", "#" %></li>
+                <li><%= link_to "マップで探す", "#" %></li>
+              </ul>
+          </details>
+        </li>
+      </ul>
+    </div>
+    </div>
+  </div>
+</header>
