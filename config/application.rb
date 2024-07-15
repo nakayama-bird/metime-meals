@@ -29,7 +29,8 @@ module Myapp
     # タイムゾーンの設定
     config.time_zone = "Tokyo"
 
-    config.i18n.default_locale = :ja
+    # デフォルト言語の設定
+    # config.i18n.default_locale = :ja
 
     # config.eager_load_paths << Rails.root.join("extras")
   end
