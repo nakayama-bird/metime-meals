@@ -42,6 +42,3 @@
 # リモートに不要なもの
 .DS_Store
 /vendor/bundle
-
-# 環境変数
-.env
