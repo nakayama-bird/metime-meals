@@ -6,7 +6,7 @@ class CreatePosts < ActiveRecord::Migration[7.1]
       t.float :latitude, null: false
       t.float :longitude, null: false
       t.text :body, null: false
-      t.integer :amount, null: false
+      t.integer :amount
       t.references :user, foreign_key: true
 
       t.timestamps
