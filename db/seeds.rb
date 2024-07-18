@@ -26,6 +26,7 @@ user_ids = User.ids
     address: "住所#{index}",
     latitude: 50,
     longitude: 50,
-    body: "本文#{index}"
+    body: "本文#{index}",
+    genre: [0,1,2,3,4,10,11,20,21,99].sample
     )
 end
