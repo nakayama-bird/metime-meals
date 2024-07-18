@@ -1,0 +1,14 @@
+ja:
+  activerecord:
+    attributes:
+      post/genre:
+        japanese_food: 和食
+        chinese_food: 中華料理
+        western_food: 洋食・西洋料理
+        korean_food: 韓国料理
+        ethnic_food: エスニック料理
+        ramen: ラーメン
+        curry: カレー
+        cafe: カフェ
+        bar: 居酒屋・バー
+        other: その他
