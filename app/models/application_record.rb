@@ -10,4 +10,9 @@ class ApplicationRecord < ActiveRecord::Base
     self.class.human_attribute_enum_value(attr_name, self.send("#{attr_name}"))
     # 任意のクラスでhuman_attribute_enum_valueメソッドを呼び出す。
   end
+
+  # 入力時プルダウンで表示する際の設定
+  def self.enum_options_for_select(attr_name)
+    self.send(attr_name.to_s.pluralize).map {|k, _| [self.human_attribute_enum_value(attr_name,k),k] }.to_h
+  end
 end

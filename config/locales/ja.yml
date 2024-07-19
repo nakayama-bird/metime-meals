@@ -12,3 +12,11 @@ ja:
         cafe: カフェ
         bar: 居酒屋・バー
         other: その他
+      post/amount:
+        less_than_one_thousand: 1000円未満
+        one_thousand_level: 1000円台
+        two_thousand_level: 2000円台
+        theree_thousand_level: 3000円台
+        four_thousand_level: 4000円台
+        five_thousand_level: 5000円台
+        more_than_six_thousand: 6000円以上
