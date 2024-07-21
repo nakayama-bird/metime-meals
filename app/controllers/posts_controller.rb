@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  skip_before_action :require_login, only: %[index]
+  skip_before_action :require_login, only: %[index show]
   def index
     @posts = Post.includes(:user).order(created_at: :desc)
   end
