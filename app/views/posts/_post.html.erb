@@ -1,11 +1,11 @@
-<div class="relative flex flex-col mb-5 md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
+<%= link_to post_path(post), class:"relative flex flex-col mb-5 md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white" do %>
     <div class="w-full md:w-1/3 bg-white grid place-items-center">
         <%= image_tag 'placeholder.png' %>
     </div>
     <div class="w-full md:w-2/3 bg-white flex flex-col space-y-2 p-3">
         <div class="flex justify-between item-center">
             <div class="flex items-center">
-                <p class="text-gray-600 font-bold text-sm ml-1"><%= post.human_attribute_enum(:genre) %> <%= post.human_attribute_enum(:amount) %></p>
+                <p class="text-gray-600 font-bold text-sm ml-1"><%= post.human_attribute_enum(:genre) %></p>
             </div>
         </div>
         <h3 class="font-black text-gray-800 md:text-3xl text-xl"><%= post.restaurant_name %></h3>
@@ -16,4 +16,4 @@
             <div class="badge badge-lg mr-1">タグ</div>
         </div>
     </div>
-</div>
+<% end %>
