@@ -9,4 +9,8 @@ class User < ApplicationRecord
   validates :name, presence: true, length: {maximum: 255} #name要素を入力必須、255文字まで。
 
   has_many :posts
+
+  def own?(object)
+    object.user_id == id
+  end
 end

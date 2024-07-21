@@ -1,0 +1,47 @@
+<div class='container rounded-xl shadow-xl p-6 max-w-xs md:max-w-3xl mx-auto my-10 border border-white bg-base-100'>
+    <div class='ml-6 mt-6'>
+        <%= link_to '＜戻る', posts_path  %>
+    </div>
+    <div class='md:w-1/2 mx-auto'>
+        <div class='text-center mt-6'>
+            <h2 class='text-base mb-2 font-medium'>
+                <%= @post.human_attribute_enum(:genre) %>
+            </h2>
+            <h1 class='text-2xl font-bold mb-6'>
+                <%= @post.restaurant_name %>
+            </h1>
+        </div>
+        <div class="flex justify-center">
+            <div class="badge badge-lg mr-1">タグ</div>
+            <div class="badge badge-lg mr-1">タグ</div>
+        </div>
+        <p class='w-full mx-auto p-5'>
+            所在地：
+            <br><%= @post.address %></br>
+        </p>
+        <p class='w-full mx-auto p-5'>
+            おすすめポイント：
+            <br><%= @post.body %></br>
+        </p>
+        <% if @post.amount %>
+            <p class='w-full mx-auto p-5'>
+                使用した金額：<%= @post.human_attribute_enum(:amount) %>
+            </p>
+        <% else %>
+        <% end %>
+        <div class="object-contain w-72 h-72 mx-auto mb-6">
+            <%= image_tag 'placeholder.png' %>
+        </div>
+    </div>
+    <%# ユーザー削除機能を実装したら分岐を設定 %>
+    <div class='grid grid-cols-8 gap-4'>  
+        <div class='col-start-2 col-end-3 flex items-center'><%= @post.user.name %></div>
+            <% if logged_in? %>
+                <% if current_user.own?(@post)%>
+                    <div class='col-start-6'><%= link_to '編集', '#', class: "btn btn-primary" %></div>
+                    <div class='col-start-7'><%= link_to '削除', '#', class: "btn btn-secondary" %></div>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+</div>
