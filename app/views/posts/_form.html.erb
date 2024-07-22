@@ -1,0 +1,31 @@
+<%= form_with model: post do |f| %>
+    <%= f.label :genre, '料理のジャンル', class: 'label w-full md:w-1/2 mx-auto' %>
+    <div class='mx-auto w-full md:w-1/2 text-center'>
+        <%= f.select :genre, Post.enum_options_for_select(:genre), { include_blank: "未選択" },
+                    class: 'bg-card-body bg-base-100 rounded-3xl border border-accent py-2 px-3 mb-6 w-full md:w-1/2 mx-auto' %>
+    </div>
+
+    <%= f.label :restaurant_name, 'お店の名前', class: 'label w-full md:w-1/2 mx-auto' %>
+    <%= f.text_field :restaurant_name, class: 'input input-borderd input-accent form-control mb-6 w-full md:w-1/2 mx-auto', placeholder: 'お店の名前を入力してください' %>
+
+    <%= f.label :address, '住所', class: 'label w-full md:w-1/2 mx-auto' %>
+    <%= f.text_field :address, class: 'input input-borderd input-accent form-control mb-6 w-full md:w-1/2 mx-auto' %>
+
+
+
+    <%= f.label :body, 'おすすめポイント', class: 'label w-full md:w-1/2 mx-auto' %>
+    <%= f.text_area :body, class: 'input input-borderd input-accent form-control mb-6 w-full md:w-1/2 mx-auto h-auto', rows: 5, placeholder: 'おすすめメニューや感想などを入力しましょう' %>
+
+    <%= f.label :amount, '使った金額(任意)', class: 'label w-full md:w-1/2 mx-auto' %>
+    <div class='mx-auto w-full md:w-1/2 text-center'>
+        <%= f.select :amount, Post.enum_options_for_select(:amount), { include_blank: "未選択" },
+                    class: 'bg-card-body bg-base-100 rounded-3xl border border-accent py-2 px-3 mb-6 w-full md:w-1/2 mx-auto' %>
+    </div>
+
+    <div class='mx-auto md:w-1/2'>
+        <%= f.submit '投稿', class: 'btn btn-primary w-full my-6' %>
+    </div>
+<% end %>
+<div class='text-center mb-6'>
+    <%= link_to'投稿一覧ページへ', posts_path %>
+</div>

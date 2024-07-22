@@ -38,7 +38,7 @@
         <div class='col-start-2 col-end-3 flex items-center'><%= @post.user.name %></div>
             <% if logged_in? %>
                 <% if current_user.own?(@post)%>
-                    <div class='col-start-6'><%= link_to '編集', '#', class: "btn btn-primary" %></div>
+                    <div class='col-start-6'><%= link_to '編集', edit_post_path(@post), class: "btn btn-primary" %></div>
                     <div class='col-start-7'><%= link_to '削除', '#', class: "btn btn-secondary" %></div>
                 <% end %>
             <% end %>
