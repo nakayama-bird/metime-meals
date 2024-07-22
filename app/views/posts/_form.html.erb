@@ -6,10 +6,10 @@
     </div>
 
     <%= f.label :restaurant_name, 'お店の名前', class: 'label w-full md:w-1/2 mx-auto' %>
-    <%= f.text_field :restaurant_name, class: 'input input-borderd input-accent form-control mb-6 w-full md:w-1/2 mx-auto', placeholder: 'お店の名前を入力してください' %>
+    <%= f.text_field :restaurant_name, class: 'input input-borderd input-accent form-control mb-6 w-full md:w-1/2 mx-auto', id:'autocomplete', placeholder: 'お店の名前を入力してください' %>
 
     <%= f.label :address, '住所', class: 'label w-full md:w-1/2 mx-auto' %>
-    <%= f.text_field :address, class: 'input input-borderd input-accent form-control mb-6 w-full md:w-1/2 mx-auto' %>
+    <%= f.text_field :address, class: 'input input-borderd input-accent form-control mb-6 w-full md:w-1/2 mx-auto', id: 'address' %>
 
 
 
@@ -29,3 +29,31 @@
 <div class='text-center mb-6'>
     <%= link_to'投稿一覧ページへ', posts_path %>
 </div>
+<script>
+  let autocomplete;
+  function initAutocomplete() {
+    autocomplete = new google.maps.places.Autocomplete(
+      document.getElementById('autocomplete'),
+      {
+        types: ['establishment'],
+        componentRestrictions: {'country': 'jp'},
+        fields: ['place_id', 'geometry', 'name', 'formatted_address']
+      });
+    autocomplete.addListener('place_changed', onPlaceChanged);
+  }
+
+  function onPlaceChanged() {
+    var place = autocomplete.getPlace();
+
+    if (!place.geometry) {
+      // ユーザーが予測を選択しなかった際に入力欄をからにするための分岐
+      document.getElementById('autocomplete').placeholder = '入力してください';
+    } else {
+      // ユーザーが予測を選択した場合にフォームフィールドに追加
+      document.getElementById('autocomplete').value = place.name;
+      document.getElementById('address').value = place.formatted_address;
+    }
+  }
+</script>
+
+<script async src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&libraries=places&callback=initAutocomplete"></script>
