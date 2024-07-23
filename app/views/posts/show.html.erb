@@ -34,12 +34,12 @@
         </div>
     </div>
     <%# ユーザー削除機能を実装したら分岐を設定 %>
-    <div class='grid grid-cols-8 gap-4'>  
-        <div class='col-start-2 col-end-3 flex items-center'><%= @post.user.name %></div>
+    <div class='grid grid-cols-3 md:grid-cols-8'>  
+        <div class='col-start-1 flex items-center ml-5 md:col-start-2'><%= @post.user.name %></div>
             <% if logged_in? %>
                 <% if current_user.own?(@post)%>
-                    <div class='col-start-6'><%= link_to '編集', edit_post_path(@post), class: "btn btn-primary" %></div>
-                    <div class='col-start-7'><%= link_to '削除', post_path(@post),data: {turbo_method: :delete, turbo_confirm: '投稿を削除しますか？'}, class: "btn btn-secondary" %></div>
+                    <div class='ml-6 md:col-start-6'><%= link_to '編集', edit_post_path(@post), class: "btn btn-primary" %></div>
+                    <div class='ml-5 md:col-start-7'><%= link_to '削除', post_path(@post),data: {turbo_method: :delete, turbo_confirm: '投稿を削除しますか？'}, class: "btn btn-secondary" %></div>
                 <% end %>
             <% end %>
         </div>
