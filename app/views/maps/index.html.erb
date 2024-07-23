@@ -1,0 +1,33 @@
+<div id="map" class="h-[37.5rem] w-full"></div>
+<script>
+    function initMap() {
+    // デフォルトポジション（東京周辺）の定義
+    const defaultlocation = { lat: 35.6803997, lng: 139.7690174 };
+
+    // 地図要所の取得
+    const mapElement = document.getElementById('map');
+
+    // 初期表示の設定
+    const mapOptions = {
+        center: defaultlocation,
+        zoom: 10,
+    }
+
+    const map = new google.maps.Map(mapElement, mapOptions);
+
+
+    //投稿が存在するかで条件分岐
+    <% if @posts.present? %>
+    // 投稿一覧を地図上で表示
+        <% @posts.each do |post| %>
+            new google.maps.Marker({
+                position: { lat: <%= post.latitude %>, lng: <%= post.longitude %> },
+                map: map,
+            });
+        <% end %>
+    <% else %>
+        console.log('投稿が存在しません');
+    <% end %>
+    }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap"></script>
