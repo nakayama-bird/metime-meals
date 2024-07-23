@@ -14,4 +14,5 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[new create]
   resources :posts
+  resources :maps, only: %i[index]
 end

@@ -13,24 +13,3 @@
     </div>
   </div>
 </div>
-<div id='map'></div>
-
-<style>
-#map{
-  height: 600px;
-  width: 100%
-}
-</style>
-
-<script>
-  const defaultlocation = { lat: 35.6803997, lng: 139.7690174 };
-
-  function initMap(){
-
-    map = new google.maps.Map(document.getElementById('map'),{
-      center: defaultlocation,
-      zoom: 10
-    });
-  }
-</script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap"></script>
