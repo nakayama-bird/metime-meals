@@ -10,7 +10,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    if @post.save
+    if @post.save_with_tags(tag_names: params.dig(:post, :tag_names).split(',').uniq)
       redirect_to posts_path, success: '投稿に成功しました'
     else
       flash.now[:alert] = '投稿に失敗しました'
@@ -28,7 +28,8 @@ class PostsController < ApplicationController
 
   def update
     @post = current_user.posts.find(params[:id])
-    if @post.update(post_params)
+    pp post_params
+    if @post.save_with_tags(tag_names: params.dig(:post, :tag_names).split(',').uniq)
       redirect_to post_path(post_params), success: '投稿の更新に成功しました'
     else
       flash.now[:alert] = '投稿の更新に失敗しました'
