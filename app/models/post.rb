@@ -15,6 +15,8 @@ class Post < ApplicationRecord
   enum amount: { less_than_one_thousand: 0, one_thousand_level: 1, two_thousand_level: 2, theree_thousand_level: 3,
   four_thousand_level: 4, five_thousand_level: 5, more_than_six_thousand: 6}
 
+  scope :with_tag, ->(tag_name){joins(:tags).where(tags: {name: tag_name})}
+
   # geocodingについての設定
   geocoded_by :address
   before_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }

@@ -1,7 +1,12 @@
 class PostsController < ApplicationController
   skip_before_action :require_login, only: %i[index show]
   def index
-    @posts = Post.includes(:user).order(created_at: :desc)
+    posts = if (tag_name = params[:tag_name])
+      Post.with_tag(tag_name)
+    else
+      Post.includes(:user)
+    end
+    @posts = posts.order(created_at: :desc)
   end
 
   def new
