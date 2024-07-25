@@ -6,8 +6,6 @@ class Post < ApplicationRecord
   validates :restaurant_name, presence: true, length: {maximum: 255}
   validates :address, presence: true
   validates :body, presence: true, length: {maximum: 65_535 }
-  validates :latitude, presence: true
-  validates :longitude, presence: true
   validates :genre, presence: true
 
   enum genre: { japanese_food: 0, chinese_food: 1, western_food: 2, korean_food: 3, ethnic_food: 4,
@@ -19,7 +17,7 @@ class Post < ApplicationRecord
 
   # geocodingについての設定
   geocoded_by :address
-  before_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
+  after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
 
   def save_with_tags(tag_names:)
     ActiveRecord::Base.transaction do
