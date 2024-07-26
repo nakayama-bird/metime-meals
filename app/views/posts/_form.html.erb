@@ -1,4 +1,4 @@
-<%= form_with model: post do |f| %>
+<%= form_with model: post,local: true do |f| %>
     <%= f.label :genre, '料理のジャンル', class: 'label w-full md:w-1/2 mx-auto' %>
     <div class='mx-auto w-full md:w-1/2 text-center'>
         <%= f.select :genre, Post.enum_options_for_select(:genre), { include_blank: "未選択" },
@@ -14,8 +14,11 @@
     <%= f.label :body, 'おすすめポイント', class: 'label w-full md:w-1/2 mx-auto' %>
     <%= f.text_area :body, class: 'input input-borderd input-accent form-control mb-6 w-full md:w-1/2 mx-auto h-auto', rows: 5, placeholder: 'おすすめメニューや感想などを入力しましょう' %>
 
-    <%= f.label :tag_names, 'タグ',class: 'label w-full md:w-1/2 mx-auto'  %>
+    <%= f.label :tag_names, 'タグ',class: 'label w-full md:w-1/2 mx-auto' %>
     <%= f.text_field :tag_names, class: 'input input-borderd input-accent form-control mb-6 w-full md:w-1/2 mx-auto', placeholder: ',で区切って入力してください' %>
+
+    <%= f.label :post_images, '写真', class: 'label w-full md:w-1/2 mx-auto'%>
+    <%= f.file_field :post_images, multiple: true,include_hidden: false, class: 'file-input file-input-bordered file-input-accent form-control w-full md:w-1/2 mx-auto'%>
 
     <%= f.label :amount, '使った金額(任意)', class: 'label w-full md:w-1/2 mx-auto' %>
     <div class='mx-auto w-full md:w-1/2 text-center'>

@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+  mount_uploaders :post_images, PostImageUploader
+
   belongs_to :user
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
