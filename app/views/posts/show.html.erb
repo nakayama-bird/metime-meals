@@ -33,7 +33,7 @@
                 <% if @post.post_images.present? %>
                 <div class="carousel">
                     <div id="slide1" class="carousel-item relative w-full justify-center items-center">
-                    <%= image_tag @post.post_images.first.to_s, width: 500%>
+                    <%= image_tag @post.post_images.first.to_s, width: 500 %>
                     <% if @post.post_images.second.present? %>
                         <div class="absolute flex justify-end transform -translate-y-1/2 right-2.5 top-1/2">
                         <a href="#slide2" class="btn btn-circle glass btn-sm">❯</a>

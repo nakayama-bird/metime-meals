@@ -9,6 +9,7 @@ class Post < ApplicationRecord
   validates :address, presence: true
   validates :body, presence: true, length: {maximum: 65_535 }
   validates :genre, presence: true
+  validates :post_images, length: { maximum: 3 }
 
   enum genre: { japanese_food: 0, chinese_food: 1, western_food: 2, korean_food: 3, ethnic_food: 4,
   ramen: 10, curry: 11, cafe: 20, bar: 21, other: 99}

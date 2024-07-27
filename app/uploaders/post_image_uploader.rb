@@ -14,20 +14,20 @@ class PostImageUploader < CarrierWave::Uploader::Base
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
-  def default_url
+  # def default_url
   #   # For Rails 3.1+ asset pipeline compatibility:
   #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
-    'placeholder.png'
+    # 'placeholder.png'
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
-  end
+  # end
 
   # Process files as they are uploaded:
+  process resize_to_fill: [1000, 1000]
+
   # process scale: [200, 300]
-  #
   # def scale(width, height)
   #   # do something
   # end
-
   # Create different versions of your uploaded files:
   # version :thumb do
   #   process resize_to_fit: [50, 50]
@@ -35,8 +35,8 @@ class PostImageUploader < CarrierWave::Uploader::Base
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-  def extension_whitelist
-    %w(jpg jpeg gif png)
+  def extension_allowlist
+    %w[jpg jpeg gif png heic webp]
   end
 
   # Override the filename of the uploaded files:
@@ -44,4 +44,17 @@ class PostImageUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+  process :convert_to_webp
+
+  def convert_to_webp
+    manipulate! do |img|
+      img.format 'webp'
+      img
+    end
+  end
+    # 拡張子を.webpで保存
+  def filename
+    super.chomp(File.extname(super)) + '.webp' if original_filename.present?
+  end
+
 end
