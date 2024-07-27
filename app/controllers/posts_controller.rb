@@ -47,7 +47,7 @@ class PostsController < ApplicationController
 
   private
     def post_params
-      params.require(:post).permit(:genre, :restaurant_name, :address, :body, :amount, :post_images_cache, post_images: [] )
+      params.require(:post).permit(:genre, :restaurant_name, :address, :body, :amount, post_images: [] )
     end
     def set_post
       @post = current_user.posts.find(params[:id])
