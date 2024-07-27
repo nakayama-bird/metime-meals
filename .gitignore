@@ -42,3 +42,4 @@
 # リモートに不要なもの
 .DS_Store
 /vendor/bundle
+public/uploads/*
