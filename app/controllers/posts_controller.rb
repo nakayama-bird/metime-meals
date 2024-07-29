@@ -64,6 +64,6 @@ class PostsController < ApplicationController
     end
 
     def search_post_params
-      params.fetch(:q, {}).permit(:address_or_body, :genre_select)
+      params.fetch(:q, {}).permit(:address_or_name, :genre_select)
     end
 end

@@ -18,7 +18,7 @@ class Post < ApplicationRecord
 
   scope :with_tag, ->(tag_name){joins(:tags).where(tags: {name: tag_name})}
   scope :address_contain, ->(word){ where('posts.address LIKE ?', "%#{word}%") }
-  scope :body_contain, ->(word){ where('posts.body LIKE ?', "%#{word}%") }
+  scope :name_contain, ->(word){ where('posts.restaurant_name LIKE ?', "%#{word}%") }
   scope :by_genre, ->(genre) { where(genre: genre) }
 
   # geocodingについての設定
