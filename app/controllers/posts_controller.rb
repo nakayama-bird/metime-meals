@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
-  skip_before_action :require_login, only: %i[index show]
+  skip_before_action :require_login, only: %i[index show search]
   before_action :set_post, only: %i[edit update destroy]
+  before_action :set_search_posts_form
   def index
     posts = if (tag_name = params[:tag_name])
       Post.with_tag(tag_name)
@@ -45,11 +46,24 @@ class PostsController < ApplicationController
     redirect_to posts_path, success: '投稿を削除しました'
   end
 
+  def search
+    @posts = @search_form.search.includes(:user).order(created_at: :desc)
+  end
+
   private
     def post_params
       params.require(:post).permit(:genre, :restaurant_name, :address, :body, :amount, post_images: [] )
     end
+
     def set_post
       @post = current_user.posts.find(params[:id])
+    end
+
+    def set_search_posts_form
+      @search_form = SearchPostsForm.new(search_post_params)
+    end
+
+    def search_post_params
+      params.fetch(:q, {}).permit(:address_or_body)
     end
 end

@@ -1,0 +1,7 @@
+<%= form_with model: search_form, url: search_posts_path, scope: :q ,method: :get, class: 'flex' do |f|%>
+    <%= f.search_field :address_or_body, 
+        id: 'search_field_of_post',    
+        class: 'input input-borderd input-accent form-control mb-6 flex-auto md:w-1/2 mx-auto',
+        placeholder: '場所・投稿内容' %>
+    <%= f.submit '検索', class: 'btn btn-primary flex-auto' %>
+<% end %>
