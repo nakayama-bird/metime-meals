@@ -50,6 +50,10 @@ class PostsController < ApplicationController
     @posts = @search_form.search.includes(:user).order(created_at: :desc)
   end
 
+  def myposts
+    @posts = Post.includes(:user).where(user_id: current_user.id).order(created_at: :desc)
+  end
+
   private
     def post_params
       params.require(:post).permit(:genre, :restaurant_name, :address, :body, :amount, post_images: [] )

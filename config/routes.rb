@@ -19,4 +19,5 @@ Rails.application.routes.draw do
     end
   end
   resources :maps, only: %i[index]
+  get "myposts" => "posts#myposts"
 end
