@@ -1,4 +1,6 @@
 <%= form_with model: post do |f| %>
+<%= render 'shared/error_messages', model: f.object %>
+
     <%= f.label :genre, '料理のジャンル', class: 'label w-full md:w-1/2 mx-auto' %>
     <div class='mx-auto w-full md:w-1/2 text-center'>
         <%= f.select :genre, Post.enum_options_for_select(:genre), { include_blank: "未選択" },
