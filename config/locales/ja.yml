@@ -1,5 +1,8 @@
 ja:
   activerecord:
+    model:
+      user: ユーザー
+      post: 投稿
     attributes:
       post/genre:
         japanese_food: 和食
@@ -20,3 +23,15 @@ ja:
         four_thousand_level: 4000円台
         five_thousand_level: 5000円台
         more_than_six_thousand: 6000円以上
+      user:
+        email: メールアドレス
+        name: 名前
+        password: パスワード
+        password_confirmation: パスワード確認
+      post:
+        restaurant_name: お店の名前
+        address: 住所
+        body: おすすめポイント
+        tag_names: タグ
+        post_images: 写真（3枚まで）
+        amount: 使った金額(任意)

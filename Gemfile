@@ -62,7 +62,10 @@ gem "geocoder"
 # upload photos
 gem 'carrierwave'
 gem 'fog-aws'
-gem "aws-sdk-s3", require: false 
+gem "aws-sdk-s3", require: false
+
+# i18n
+gem 'rails-i18n', '~> 7.0.0'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
