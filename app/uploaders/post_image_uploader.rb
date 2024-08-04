@@ -23,7 +23,7 @@ class PostImageUploader < CarrierWave::Uploader::Base
   # def default_url
   #   # For Rails 3.1+ asset pipeline compatibility:
   #   # ActionController::Base.helpers.asset_path("fallback/" + [version_name, "default.png"].compact.join('_'))
-    # 'placeholder.png'
+  # 'placeholder.png'
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
@@ -58,9 +58,9 @@ class PostImageUploader < CarrierWave::Uploader::Base
       img
     end
   end
-    # 拡張子を.webpで保存
-  def filename
-    super.chomp(File.extname(super)) + '.webp' if original_filename.present?
-  end
 
+  # 拡張子を.webpで保存
+  def filename
+    "#{super.chomp(File.extname(super))}.webp" if original_filename.present?
+  end
 end

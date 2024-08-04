@@ -4,10 +4,10 @@ class PostsController < ApplicationController
   before_action :set_search_posts_form
   def index
     posts = if (tag_name = params[:tag_name])
-      Post.with_tag(tag_name)
-    else
-      Post.includes(:user)
-    end
+              Post.with_tag(tag_name)
+            else
+              Post.includes(:user)
+            end
     @posts = posts.order(created_at: :desc)
   end
 
@@ -29,7 +29,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
-  def edit;end
+  def edit; end
 
   def update
     @post.assign_attributes(post_params)
@@ -55,19 +55,20 @@ class PostsController < ApplicationController
   end
 
   private
-    def post_params
-      params.require(:post).permit(:genre, :restaurant_name, :address, :body, :amount, post_images: [] )
-    end
 
-    def set_post
-      @post = current_user.posts.find(params[:id])
-    end
+  def post_params
+    params.require(:post).permit(:genre, :restaurant_name, :address, :body, :amount, post_images: [])
+  end
 
-    def set_search_posts_form
-      @search_form = SearchPostsForm.new(search_post_params)
-    end
+  def set_post
+    @post = current_user.posts.find(params[:id])
+  end
 
-    def search_post_params
-      params.fetch(:q, {}).permit(:address_or_name, :genre_select)
-    end
+  def set_search_posts_form
+    @search_form = SearchPostsForm.new(search_post_params)
+  end
+
+  def search_post_params
+    params.fetch(:q, {}).permit(:address_or_name, :genre_select)
+  end
 end
