@@ -67,6 +67,9 @@ gem "aws-sdk-s3", require: false
 # i18n
 gem 'rails-i18n', '~> 7.0.0'
 
+# config
+gem 'config'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
@@ -80,6 +83,8 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  # development email
+  gem 'letter_opener_web', '~> 3.0'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
