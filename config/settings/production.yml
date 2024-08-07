@@ -1,2 +1,4 @@
 default_url_options:
   host: 'https://metime-meals-21937e9c3179.herokuapp.com/'
+sorcery:
+  google_callback_url: 'https://metime-meals-21937e9c3179.herokuapp.com/oauth/callback?provider=google'
