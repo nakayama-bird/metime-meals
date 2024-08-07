@@ -15,7 +15,9 @@
             <%= f.submit 'ログイン', class: 'btn btn-primary w-full mt-6 mb-6' %>
         </div>
     <% end %>
-
+    <div class='text-center mb-6'>
+        <%= link_to 'Login with Google', auth_at_provider_path(provider: :google) %>
+    </div>
     <div class='text-center mb-6'>
         <%= link_to '登録ページへ', new_user_path, class: 'underline flex-auto mr-3' %>/<%= link_to 'パスワードお忘れの方', new_password_reset_path, class: 'underline flex-auto ml-3' %>
     </div>
