@@ -9,7 +9,7 @@ class PostDecorator < Draper::Decorator
         </svg>'
 
     # full_starを評価数分繰り返して表示。enumが0からなので1プラス。
-    stars = full_star * (object.rating_before_type_cast + 1)
+    stars = full_star * object.rating_before_type_cast
 
     # 残りの星はempty_starで補う。
     stars += empty_star * (4 - object.rating_before_type_cast)
