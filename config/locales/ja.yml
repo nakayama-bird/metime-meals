@@ -31,8 +31,9 @@ ja:
       post:
         restaurant_name: お店の名前
         address: 住所
-        body: おすすめポイント
+        body: おひとり様おすすめポイント
         tag_names: タグ
         post_images: 写真（3枚まで）
         amount: 使った金額(任意)
         genre: ジャンル
+        rating: おひとり様おすすめ度
