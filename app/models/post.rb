@@ -11,11 +11,11 @@ class Post < ApplicationRecord
   validates :genre, presence: true
   validates :post_images, length: { maximum: 3 }
 
-  enum genre:  { japanese_food: 0, chinese_food: 1, western_food: 2, korean_food: 3, ethnic_food: 4,
+  enum genre: { japanese_food: 0, chinese_food: 1, western_food: 2, korean_food: 3, ethnic_food: 4,
                 ramen: 10, curry: 11, cafe: 20, bar: 21, other: 99 }
   enum amount: { less_than_one_thousand: 0, one_thousand_level: 1, two_thousand_level: 2, theree_thousand_level: 3,
-                four_thousand_level: 4, five_thousand_level: 5, more_than_six_thousand: 6 }
-  enum rating: { very_poor: 0, poor: 1, good: 2, better: 3, excellent: 4}
+                 four_thousand_level: 4, five_thousand_level: 5, more_than_six_thousand: 6 }
+  enum rating: { very_poor: 0, poor: 1, good: 2, better: 3, excellent: 4 }
 
   scope :with_tag, ->(tag_name) { joins(:tags).where(tags: { name: tag_name }) }
   scope :address_contain, ->(word) { where('posts.address LIKE ?', "%#{word}%") }
