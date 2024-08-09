@@ -22,6 +22,12 @@
             おすすめポイント：
             <br><%= @post.body %></br>
         </p>
+        <p class='w-full mx-auto p-5'>
+            おひとり様おすすめ度：
+        </p>
+        <div class="flex justify-center flex-wrap">
+            <%= @post.decorate.star_rating %>
+        </div>
         <% if @post.amount %>
             <p class='w-full mx-auto p-5'>
                 使用した金額：<%= @post.human_attribute_enum(:amount) %>

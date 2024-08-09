@@ -14,15 +14,15 @@
     <%= f.text_field :address, class: 'input input-borderd input-accent form-control mb-6 w-full md:w-1/2 mx-auto', id: 'address' %>
 
     <%= f.label :body,  class: 'label w-full md:w-1/2 mx-auto' %>
-    <%= f.text_area :body, class: 'input input-borderd input-accent form-control mb-6 w-full md:w-1/2 mx-auto h-auto', rows: 5, placeholder: 'おすすめメニューや感想などを入力しましょう' %>
+    <%= f.text_area :body, class: 'input input-borderd input-accent form-control mb-6 w-full md:w-1/2 mx-auto h-auto', rows: 5, placeholder: '一人で行く時嬉しいサービス、メニューやお店のおすすめポイントを入力してください' %>
 
     <%= f.label :rating, class: 'label w-full md:w-1/2 mx-auto'  %>
     <div class="mx-auto w-full md:w-1/2 text-center">
       <div class="rating rating-lg">
         <%= f.radio_button :rating, :very_poor, class: 'mask mask-star-2 bg-orange-400' %>
         <%= f.radio_button :rating, :poor, class: 'mask mask-star-2 bg-orange-400' %>
-        <%= f.radio_button :rating, :average, class: 'mask mask-star-2 bg-orange-400' %>
-        <%= f.radio_button :rating, :good,class: 'mask mask-star-2 bg-orange-400' %>              
+        <%= f.radio_button :rating, :good, class: 'mask mask-star-2 bg-orange-400' %>
+        <%= f.radio_button :rating, :better,class: 'mask mask-star-2 bg-orange-400' %>              
         <%= f.radio_button :rating, :excellent,class: 'mask mask-star-2 bg-orange-400' %>
       </div>
     </div>
