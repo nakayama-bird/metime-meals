@@ -12,7 +12,7 @@ jobs:
       mysql:
         image: mysql:8.0
         ports:
-          - 3307:3306
+          - 3306:3306
         env:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
         options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
@@ -26,18 +26,13 @@ jobs:
         with:
           bundler-cache: true
 
-      - name: Cache node modules
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
       - name: Bundler and gem install
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3 --path vendor/bundle
+
+      - name: Wait for MySQL
+        run: sleep 15
 
       - name: Database create and migrate
         run: |
@@ -62,7 +57,6 @@ jobs:
 
       - name: Run rubocop
         run: bundle exec rubocop
-
   # deploy:
   #   need: test
   #   runs-on: ubuntu-latest
