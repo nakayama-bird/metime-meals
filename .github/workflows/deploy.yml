@@ -44,24 +44,23 @@ jobs:
   #     - name: Run rspec
   #       run: bundle exec rspec
 
-  test:  
-    rubocop:
-      runs-on: ubuntu-latest
-      timeout-minutes: 10
-      steps:
-        - name: Checkout code
-          uses: actions/checkout@v2
+  rubocop:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-        - name: Set up Ruby
-          uses: ruby/setup-ruby@v1
-          with:
-            bundler-cache: true
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
 
         - name: Run rubocop
           run: bundle exec rubocop
 
   deploy:
-    needs: test
+    needs: rubocop
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
