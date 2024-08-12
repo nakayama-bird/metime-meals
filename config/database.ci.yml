@@ -1,0 +1,10 @@
+test:
+  adapter: mysql2
+  charset: utf8mb4
+  collation: utf8mb4_bin
+  encoding: utf8mb4
+  database: rails7-mysql
+  host: 127.0.0.1
+  username: root
+  password: password
+  reconnect: false
