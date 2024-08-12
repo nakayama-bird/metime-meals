@@ -40,26 +40,28 @@ jobs:
   #         cp config/database.ci.yml config/database.yml
   #         bundle exec rails db:create RAILS_ENV=test
   #         bundle exec rails db:migrate RAILS_ENV=test
-      
+  
   #     - name: Run rspec
   #       run: bundle exec rspec
 
-  rubocop:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  test:  
+    rubocop:
+      runs-on: ubuntu-latest
+      timeout-minutes: 10
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
+        - name: Set up Ruby
+          uses: ruby/setup-ruby@v1
+          with:
+            bundler-cache: true
 
-      - name: Run rubocop
-        run: bundle exec rubocop
+        - name: Run rubocop
+          run: bundle exec rubocop
 
   deploy:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
