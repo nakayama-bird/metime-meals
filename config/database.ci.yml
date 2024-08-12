@@ -5,3 +5,4 @@ test:
   password: password
   host: localhost
   database: myapp_test
+  port: 5432
