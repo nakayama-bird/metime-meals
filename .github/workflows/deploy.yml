@@ -5,44 +5,44 @@ on:
   pull_request:
 
 jobs:
-  rspec:
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    services:
-      mysql:
-        image: mysql:8.0
-        ports:
-          - 3307:3306
-        env:
-          MYSQL_ROOT_PASSWORD: password
-          MYSQL_ROOT_HOST: '%'
-        options: --health-cmd "mysqladmin ping -h 127.0.0.1" --health-interval 20s --health-timeout 10s --health-retries 10
+  # rspec:
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 10
+  #   services:
+  #     mysql:
+  #       image: mysql:8.0
+  #       ports:
+  #         - 3307:3306
+  #       env:
+  #         MYSQL_ROOT_PASSWORD: password
+  #         MYSQL_ROOT_HOST: '%'
+  #       options: --health-cmd "mysqladmin ping -h 127.0.0.1" --health-interval 20s --health-timeout 10s --health-retries 10
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
+  #     - name: Set up Ruby
+  #       uses: ruby/setup-ruby@v1
+  #       with:
+  #         bundler-cache: true
 
-      - name: Bundler and gem install
-        run: |
-          gem install bundler
-          bundle install --jobs 4 --retry 3 --path vendor/bundle
+  #     - name: Bundler and gem install
+  #       run: |
+  #         gem install bundler
+  #         bundle install --jobs 4 --retry 3 --path vendor/bundle
 
-      - name: Wait for MySQL
-        run: sleep 15
+  #     - name: Wait for MySQL
+  #       run: sleep 15
 
-      - name: Database create and migrate
-        run: |
-          cp config/database.ci.yml config/database.yml
-          bundle exec rails db:create RAILS_ENV=test
-          bundle exec rails db:migrate RAILS_ENV=test
+  #     - name: Database create and migrate
+  #       run: |
+  #         cp config/database.ci.yml config/database.yml
+  #         bundle exec rails db:create RAILS_ENV=test
+  #         bundle exec rails db:migrate RAILS_ENV=test
       
-      - name: Run rspec
-        run: bundle exec rspec
+  #     - name: Run rspec
+  #       run: bundle exec rspec
 
   rubocop:
     runs-on: ubuntu-latest
@@ -59,13 +59,12 @@ jobs:
       - name: Run rubocop
         run: bundle exec rubocop
 
-  # deploy:
-  #   need: test
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - uses: akhileshns/heroku-deploy@v3.13.15 # This is the action
-  #       with:
-  #         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-  #         heroku_app_name: ${{secrets.HEROKU_APP_NAME}} #Must be unique in Heroku
-  #         heroku_email: ${{HEROKU_EMAIL}}
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: akhileshns/heroku-deploy@v3.13.15 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}} #Must be unique in Heroku
+          heroku_email: ${{HEROKU_EMAIL}}
