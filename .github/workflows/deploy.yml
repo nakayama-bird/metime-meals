@@ -1,4 +1,4 @@
-name: Run rspec, rubocop
+name: rubocop, deploy
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: password
           MYSQL_ROOT_HOST: '%'
-        options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
+        options: --health-cmd "mysqladmin ping -h 127.0.0.1" --health-interval 20s --health-timeout 10s --health-retries 10
 
     steps:
       - name: Checkout code
@@ -58,13 +58,14 @@ jobs:
 
       - name: Run rubocop
         run: bundle exec rubocop
-  # deploy:
-  #   need: test
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #     - uses: akhileshns/heroku-deploy@v3.13.15 # This is the action
-  #       with:
-  #         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-  #         heroku_app_name: ${{secrets.HEROKU_APP_NAME}} #Must be unique in Heroku
-  #         heroku_email: ${{HEROKU_EMAIL}}
+
+  deploy:
+    need: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: akhileshns/heroku-deploy@v3.13.15 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}} #Must be unique in Heroku
+          heroku_email: ${{HEROKU_EMAIL}}
