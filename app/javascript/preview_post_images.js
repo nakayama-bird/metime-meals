@@ -1,12 +1,21 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('turbo:load', function() {
     let postImagesInput = document.getElementById('post-images-input');
     let previewImages = document.getElementById('preview-post-images');
 
+    if (!postImagesInput) {
+        console.error('No element found with ID "post-images-input"');
+        return;
+    }
+
     postImagesInput.addEventListener('change', function(event) {
-        // 新しい画像が選択された場合、既存のプレビュー画像を消す
         previewImages.innerHTML = '';
 
         let files = event.target.files;
+
+        if (files.length === 0) {
+            console.warn('No files selected.');
+            return;
+        }
 
         for (let i = 0; i < files.length; i++) {
             let file = files[i];
@@ -17,6 +26,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 img.src = e.target.result;
                 img.classList.add("w-1/3", "h-auto", "object-contain", "m-2");
                 previewImages.appendChild(img);
+                console.log('Image loaded:', e.target.result);
+            }
+
+            reader.onerror = function(e) {
+                console.error('Error reading file:', file.name);
             }
 
             reader.readAsDataURL(file);
