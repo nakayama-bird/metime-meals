@@ -3,7 +3,6 @@ document.addEventListener('turbo:load', function() {
     let previewImages = document.getElementById('preview-post-images');
 
     if (!postImagesInput) {
-        console.error('No element found with ID "post-images-input"');
         return;
     }
 
@@ -13,7 +12,6 @@ document.addEventListener('turbo:load', function() {
         let files = event.target.files;
 
         if (files.length === 0) {
-            console.warn('No files selected.');
             return;
         }
 
@@ -26,11 +24,10 @@ document.addEventListener('turbo:load', function() {
                 img.src = e.target.result;
                 img.classList.add("w-1/3", "h-auto", "object-contain", "m-2");
                 previewImages.appendChild(img);
-                console.log('Image loaded:', e.target.result);
             }
 
             reader.onerror = function(e) {
-                console.error('Error reading file:', file.name);
+                 // 何かエラーハンドリングが必要な場合はここに追加
             }
 
             reader.readAsDataURL(file);
