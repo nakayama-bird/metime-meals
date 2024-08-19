@@ -8,7 +8,7 @@ class PostsController < ApplicationController
             else
               Post.includes(:user)
             end
-    @posts = posts.order(created_at: :desc)
+    @posts = posts.order(created_at: :desc).page params[:page]
   end
 
   def new
