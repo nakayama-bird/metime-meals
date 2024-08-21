@@ -3,3 +3,4 @@ import "@hotwired/turbo-rails"
 import "./controllers"
 import './preview_post_images.js'
 import './tags.js'
+import './modal.js'
