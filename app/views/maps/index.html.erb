@@ -28,7 +28,7 @@
     // 初期表示の設定
     const mapOptions = {
         center: defaultlocation,
-        zoom: 10,
+        zoom: 14,
     }
 
     const map = new google.maps.Map(mapElement, mapOptions);
@@ -47,7 +47,6 @@
             const pos = {
               lat: position.coords.latitude,
               lng: position.coords.longitude,
-              zoom: 15,
             };
 
             infoWindow.setPosition(pos);
