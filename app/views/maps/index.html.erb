@@ -1,5 +1,12 @@
-<div><button id="current-location-button" class="btn btn-primary">現在地を取得する</button></div>
+<div>
+    <div>
+    <button id="current-location-button" class="btn btn-primary text-left">
+        <span class="material-icons">location_on</span>
+        <span class="block text-sm">現在地を取得する</span>
+    </button>
+    </div>
 <div id="map" class="h-[37.5rem] w-full"></div>
+</div>
 <%# モーダルを表示する要素 %>
 <dialog id="post_modal" class="modal modal-bottom sm:modal-middle">
     <div class="modal-box">
@@ -53,6 +60,7 @@
         );
       } else {
         // ブラウザがGeolocationをサポートしていない場合
+        alert('このブラウザは位置情報に対応していません');
         handleLocationError(false, infoWindow, map.getCenter());
       }
     });
@@ -97,6 +105,7 @@
     
   // 取得できなかった時の処理
   function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    alert('位置情報の取得に失敗しました。');
     infoWindow.setPosition(pos);
     infoWindow.setContent(
       browserHasGeolocation
