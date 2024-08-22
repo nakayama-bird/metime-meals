@@ -1,3 +1,4 @@
+<div><button id="current-location-button" class="btn btn-primary">現在地を取得する</button></div>
 <div id="map" class="h-[37.5rem] w-full"></div>
 <%# モーダルを表示する要素 %>
 <dialog id="post_modal" class="modal modal-bottom sm:modal-middle">
@@ -9,6 +10,7 @@
     </div>
 </dialog>
 <script>
+    let map, infoWindow;
     function initMap() {
     // デフォルトポジション（東京周辺）の定義
     const defaultlocation = { lat: 35.6803997, lng: 139.7690174 };
@@ -23,6 +25,37 @@
     }
 
     const map = new google.maps.Map(mapElement, mapOptions);
+    infoWindow = new google.maps.InfoWindow();
+
+    // 位置情報取得用のボタンの定義
+    const locationButton = document.getElementById("current-location-button");
+    locationButton.classList.add("custom-map-control-button");
+    map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+
+    locationButton.addEventListener("click", () => {
+      // 現在地を取得
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            };
+
+            infoWindow.setPosition(pos);
+            infoWindow.setContent("現在地が取得できました");
+            infoWindow.open(map);
+            map.setCenter(pos);
+          },
+          () => {
+            handleLocationError(true, infoWindow, map.getCenter());
+          }
+        );
+      } else {
+        // ブラウザがGeolocationをサポートしていない場合
+        handleLocationError(false, infoWindow, map.getCenter());
+      }
+    });
 
 
     //投稿が存在するかで条件分岐
@@ -61,5 +94,18 @@
         console.log('投稿が存在しません');
     <% end %>
     }
+    
+  // 取得できなかった時の処理
+  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(
+      browserHasGeolocation
+        ? "現在地の取得に失敗しました"
+        : "このブラウザは位置情報に対応していません"
+    );
+    infoWindow.open(map);
+  }
+
+  window.initMap = initMap;
 </script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap"></script>
