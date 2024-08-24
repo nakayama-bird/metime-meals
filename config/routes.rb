@@ -20,10 +20,15 @@ Rails.application.routes.draw do
     end
   end
   resources :password_resets, only: %i[new create edit update]
-  resources :maps, only: %i[index]
+  
+  resources :maps, only: %i[index] do
+    collection do
+      get :search
+    end
+  end
   get "myposts" => "posts#myposts"
 
   post "oauth/callback" => "oauths#callback"
-  get "oauth/callback" => "oauths#callback" 
+  get "oauth/callback" => "oauths#callback"
   get "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
 end
