@@ -1,0 +1,11 @@
+<%= form_with model: search_form, url: search_maps_path, scope: :q ,method: :get, data: { turbo: false },class: 'flex' do |f|%>
+    <%= f.search_field :address_or_name, 
+        id: 'search_field_of_address_or_name',    
+        class: 'input input-borderd input-accent form-control mb-6 flex-auto md:w-1/2 mx-auto',
+        placeholder: '店名・エリア' %>
+    <%= f.select :genre_select, Post.enum_options_for_select(:genre), { include_blank: "未選択" },
+        id: 'search_field_of_genre',
+        class: 'bg-card-body bg-base-100 rounded-3xl border border-accent py-2 px-3 mb-6 w-full md:w-1/2 mx-auto' %>
+    <%= f.submit '検索', class: 'btn btn-primary flex-auto' %>
+<% end %>
+<%= link_to '一覧表示', maps_path, data: { turbo: false },class: 'btn mb-2'%>
