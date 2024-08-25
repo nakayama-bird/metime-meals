@@ -20,7 +20,7 @@ class OauthsController < ApplicationController
     end
     redirect_to root_path, success: 'Googleアカウントでログインしました'
   rescue StandardError
-    redirect_to root_path, danger: 'Googleアカウントでログインに失敗しました'
+    redirect_to root_path, alert: 'Googleアカウントでログインに失敗しました'
   end
 
   private
