@@ -4,9 +4,9 @@ class PostsController < ApplicationController
   before_action :set_search_posts_form
   def index
     posts = if (tag_name = params[:tag_name])
-              Post.with_tag(tag_name)
+              Post.preload(:tags).with_tag(tag_name)
             else
-              Post.includes(:user)
+              Post.includes(:tags, :user)
             end
     @posts = posts.order(created_at: :desc).page params[:page]
   end
