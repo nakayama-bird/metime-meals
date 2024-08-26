@@ -86,8 +86,9 @@
             <div class='text-lg font-semibold'><%= post.restaurant_name %></div>
             <p><%= post.address %></p>
             <div class="flex justify-center mt-3">
-                <div class="badge badge-lg mr-1">タグ</div>
-                <div class="badge badge-lg mr-1">タグ</div>
+                <% post.tags.each do |tag| %>
+                  <div class="badge badge-ghost badge-base mr-1 mt-1"><%= tag.name %></div>
+                <% end %>
             </div>
         </div>
             <p>おすすめポイント<br><%= post.body %></p>
