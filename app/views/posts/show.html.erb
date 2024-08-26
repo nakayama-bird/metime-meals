@@ -1,6 +1,17 @@
 <div class='container rounded-xl shadow-xl p-6 max-w-xs md:max-w-3xl mx-auto my-10 border border-white bg-base-100'>
     <div class='ml-6 mt-6'>
+    <% if request.referer.present? %>
+        <% referer_path = URI(request.referer).path %>
+        <% if referer_path == maps_path %>
+            <%= link_to '＜戻る', maps_path  %>
+        <% elsif referer_path == mypage_posts_path %>
+            <%= link_to '＜戻る', mypage_posts_path  %>
+        <% else %>
+            <%= link_to '＜戻る', posts_path  %>
+        <% end %>
+    <% else %>
         <%= link_to '＜戻る', posts_path  %>
+    <% end %>
     </div>
     <div class='md:w-1/2 mx-auto'>
         <div class='text-center mt-6'>
