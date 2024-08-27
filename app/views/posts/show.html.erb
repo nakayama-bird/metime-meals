@@ -26,10 +26,6 @@
             <%= render @post.tags %>
         </div>
         <p class='w-full mx-auto p-5'>
-            所在地：
-            <br><%= @post.address %></br>
-        </p>
-        <p class='w-full mx-auto p-5'>
             おすすめポイント：
             <br><%= @post.body %></br>
         </p>
@@ -84,8 +80,15 @@
             </div>
         </div>
     </div>
+    <div class='md:w-1/2 mx-auto'>
+        <p class='w-full mx-auto p-5'>
+            所在地：
+            <br><%= @post.address %></br>
+        </p>
+        <div id="map" class="w-full h-60 sm:w-96 sm:h-96"></div>
+    </div>
     <%# ユーザー削除機能を実装したら分岐を設定 %>
-    <div class='grid grid-cols-3 md:grid-cols-8'>  
+    <div class='grid grid-cols-3 md:grid-cols-8 mt-10'>  
         <div class='col-start-1 flex items-center ml-5 md:col-start-2'><%= @post.user.name %></div>
             <% if logged_in? %>
                 <% if current_user.own?(@post)%>
@@ -96,3 +99,37 @@
         </div>
     </div>
 </div>
+<script>
+    function initMap() {
+    const mapElement = document.getElementById('map');
+
+    const mapOptions = {
+        center: { lat: <%= @post.latitude %>, lng: <%= @post.longitude %> },
+        zoom: 16,
+    };
+
+    const googleMapUrl = `
+        <a href="https://www.google.com/maps/search/?api=1&query=<%= @post.latitude %>,<%= @post.longitude %>"
+        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+        Googleマップで見る</a>`
+
+    const infowindow = new google.maps.InfoWindow({
+        content: googleMapUrl,
+    });
+
+    const map = new google.maps.Map(mapElement, mapOptions);
+
+    const marker = new google.maps.Marker({
+        position: { lat: <%= @post.latitude %>, lng: <%= @post.longitude %> },
+        map: map,
+    });
+
+    marker.addListener("click", () => {
+        infowindow.open({
+        anchor: marker,
+        map,
+        });
+    });
+    }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap"></script>
