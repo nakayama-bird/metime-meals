@@ -46,8 +46,8 @@ class Post < ApplicationRecord
   private
 
   def validate_tag_count
-    return unless tags.size > 7 # 例えばタグが5個以上ならエラー
+    return unless tags.size > 5 # タグが5個以上ならエラー
 
-    errors.add(:tag_names, 'は7個以下にしてください')
+    errors.add(:tag_names, 'は5個以下にしてください')
   end
 end
