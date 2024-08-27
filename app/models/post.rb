@@ -10,6 +10,7 @@ class Post < ApplicationRecord
   validates :body, presence: true, length: { maximum: 65_535 }
   validates :genre, presence: true
   validates :post_images, length: { maximum: 3 }
+  before_validation :validate_tag_count
 
   enum genre: { japanese_food: 0, chinese_food: 1, western_food: 2, korean_food: 3, ethnic_food: 4,
                 ramen: 10, curry: 11, cafe: 20, bar: 21, other: 99 }
@@ -40,5 +41,13 @@ class Post < ApplicationRecord
   def tag_names
     # NOTE: pluckだと新規作成失敗時に値が残らない(返り値がnilになる)
     tags.map(&:name).join(',')
+  end
+
+  private
+
+  def validate_tag_count
+    return unless tags.size > 7 # 例えばタグが5個以上ならエラー
+
+    errors.add(:tag_names, 'は7個以下にしてください')
   end
 end
