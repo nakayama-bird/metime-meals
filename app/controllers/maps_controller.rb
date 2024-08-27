@@ -2,7 +2,7 @@ class MapsController < ApplicationController
   skip_before_action :require_login, only: %i[index search]
   before_action :set_search_posts_form
   def index
-    @posts = Post.includes(:user).order(created_at: :desc)
+    @posts = Post.includes(:user, :tags).order(created_at: :desc)
   end
 
   def search

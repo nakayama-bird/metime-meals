@@ -4,9 +4,9 @@ class PostsController < ApplicationController
   before_action :set_search_posts_form
   def index
     posts = if (tag_name = params[:tag_name])
-              Post.with_tag(tag_name)
+              Post.preload(:tags).with_tag(tag_name)
             else
-              Post.includes(:user)
+              Post.includes(:tags, :user)
             end
     @posts = posts.order(created_at: :desc).page params[:page]
   end
@@ -17,6 +17,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
+    # digメソッドでネストしたハッシュを参照する
     if @post.save_with_tags(tag_names: params.dig(:post, :tag_names).split(',').uniq)
       redirect_to posts_path, success: '投稿に成功しました'
     else
