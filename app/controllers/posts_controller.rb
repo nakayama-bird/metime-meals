@@ -17,6 +17,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
+    # digメソッドでネストしたハッシュを参照する
     if @post.save_with_tags(tag_names: params.dig(:post, :tag_names).split(',').uniq)
       redirect_to posts_path, success: '投稿に成功しました'
     else

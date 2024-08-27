@@ -83,8 +83,13 @@ group :development, :test do
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec'
 
-# rspec
+  # rspec
   gem 'rspec-rails', '~> 6.1.0'
+
+  # debug
+  gem 'pry-byebug'
+  gem 'pry-rails'
+
 end
 
 group :development do
