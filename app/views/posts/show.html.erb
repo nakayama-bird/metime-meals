@@ -85,7 +85,7 @@
             所在地：
             <br><%= @post.address %></br>
         </p>
-        <div id="map" class="w-full h-60 sm:w-96 sm:h-96"></div>
+        <div id="map" class="w-full h-72"></div>
     </div>
     <%# ユーザー削除機能を実装したら分岐を設定 %>
     <div class='grid grid-cols-3 md:grid-cols-8 mt-10'>  
@@ -106,6 +106,7 @@
     const mapOptions = {
         center: { lat: <%= @post.latitude %>, lng: <%= @post.longitude %> },
         zoom: 16,
+        disableDefaultUI: true,
     };
 
     const googleMapUrl = `
