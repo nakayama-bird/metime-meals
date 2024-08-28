@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   skip_before_action :require_login, only: %i[index show search]
   before_action :set_post, only: %i[edit update destroy]
   before_action :set_search_posts_form
+  include ImageValidatable
   def index
     posts = if (tag_name = params[:tag_name])
               Post.preload(:tags).with_tag(tag_name)
@@ -77,20 +78,5 @@ class PostsController < ApplicationController
 
   def search_post_params
     params.fetch(:q, {}).permit(:address_or_name, :genre_select)
-  end
-
-  def validate_images(post_images)
-    return true if post_images.blank? || post_images.all?(&:blank?)
-
-    inappropriate_images = []
-    post_images.each do |image|
-      result = Vision.image_analysis(image)
-      inappropriate_images << image unless result
-    end
-    if inappropriate_images.any?
-      return false
-    end
-
-    true
   end
 end
