@@ -18,11 +18,16 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     # digメソッドでネストしたハッシュを参照する
-    if @post.save_with_tags(tag_names: params.dig(:post, :tag_names).split(',').uniq)
-      redirect_to posts_path, success: '投稿に成功しました'
+    if validate_images(post_params[:post_images])
+      if @post.save_with_tags(tag_names: params.dig(:post, :tag_names).split(',').uniq)
+        redirect_to posts_path, success: '投稿に成功しました'
+      else
+        flash.now[:alert] = '投稿に失敗しました'
+        render :new, status: :unprocessable_entity
+      end
     else
-      flash.now[:alert] = '投稿に失敗しました'
-      render :new, status: :unprocessable_entity
+      flash.now[:alert] = '不適切な画像が含まれています'
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -34,10 +39,15 @@ class PostsController < ApplicationController
 
   def update
     @post.assign_attributes(post_params)
-    if @post.save_with_tags(tag_names: params.dig(:post, :tag_names).split(',').uniq)
-      redirect_to post_path(post_params), success: '投稿の更新に成功しました'
+    if validate_images(post_params[:post_images])
+      if @post.save_with_tags(tag_names: params.dig(:post, :tag_names).split(',').uniq)
+        redirect_to post_path(post_params), success: '投稿の更新に成功しました'
+      else
+        flash.now[:alert] = '投稿の更新に失敗しました'
+        render :edit, status: :unprocessable_entity
+      end
     else
-      flash.now[:alert] = '投稿の更新に失敗しました'
+      flash.now[:alert] = '不適切な画像が含まれています'
       render :edit, status: :unprocessable_entity
     end
   end
@@ -67,5 +77,20 @@ class PostsController < ApplicationController
 
   def search_post_params
     params.fetch(:q, {}).permit(:address_or_name, :genre_select)
+  end
+
+  def validate_images(post_images)
+    return true if post_images.blank? || post_images.all?(&:blank?)
+
+    inappropriate_images = []
+    post_images.each do |image|
+      result = Vision.image_analysis(image)
+      inappropriate_images << image unless result
+    end
+    if inappropriate_images.any?
+      return false
+    end
+
+    true
   end
 end

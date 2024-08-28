@@ -32,6 +32,9 @@ module Myapp
     # デフォルト言語の設定
     config.i18n.default_locale = :ja
 
+    # libファイルの読み込み
+    config.autoload_lib(ignore: %w(assets tasks))
+
     # config.eager_load_paths << Rails.root.join("extras")
   end
 end
