@@ -9,4 +9,16 @@
         <%= f.hidden_field :map_center_lat, id: 'map_center_lat' %>
         <%= f.hidden_field :map_center_lng, id: 'map_center_lng' %>
     <%= f.submit '検索', class: 'btn btn-primary flex-auto' %>
+    <button type="button", id="form-reset-button" class="btn btn-secondary flex-auto">リセット</button>
 <% end %>
+<script>
+document.getElementById("form-reset-button").addEventListener("click", function() {
+    // フィールドの値を空にする
+    const searchField = document.getElementById("search_field_of_address_or_name");
+    searchField.value = '';
+
+    const genreSelect = document.getElementById("search_field_of_genre");
+    genreSelect.selectedIndex = 0; //
+    
+});
+</script>

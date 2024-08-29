@@ -1,4 +1,4 @@
-<%= form_with model: search_form, url: search_posts_path, scope: :q ,method: :get, class: 'flex' do |f|%>
+<%= form_with model: search_form, url: search_posts_path, scope: :q, method: :get, class: 'flex', id: 'search_form' do |f| %>
     <%= f.search_field :address_or_name, 
         id: 'search_field_of_address_or_name',    
         class: 'input input-borderd input-accent form-control mb-6 flex-auto md:w-1/2 mx-auto',
@@ -7,5 +7,18 @@
         id: 'search_field_of_genre',
         class: 'bg-card-body bg-base-100 rounded-3xl border border-accent py-2 px-3 mb-6 w-full md:w-1/2 mx-auto' %>
     <%= f.submit '検索', class: 'btn btn-primary flex-auto' %>
+    <button type="button", id="form-reset-button" class="btn btn-secondary flex-auto">リセット</button>
 <% end %>
 <%= link_to '一覧表示', posts_path, class: 'btn mb-2 md:mb-0'%>
+
+<script>
+document.getElementById("form-reset-button").addEventListener("click", function() {
+    // フィールドの値を空にする
+    const searchField = document.getElementById("search_field_of_address_or_name");
+    searchField.value = '';
+
+    const genreSelect = document.getElementById("search_field_of_genre");
+    genreSelect.selectedIndex = 0; //
+    
+});
+</script>
