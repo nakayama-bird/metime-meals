@@ -1,7 +1,7 @@
 <div class='text-center mt-6'>
   <%= render 'search_post_form', search_form: @search_form %>
-  <p id="latitude" data-value="<%= @map_center_lat %>">Latitude: <%= @map_center_lat %></p>
-  <p id="longitude" data-value="<%= @map_center_lng %>">Longitude: <%= @map_center_lng %></p>
+  <p id="latitude" data-value="<%= @map_center_lat %>"><%= @map_center_lat %></p>
+  <p id="longitude" data-value="<%= @map_center_lng %>"><%= @map_center_lng %></p>
 </div>
 <div>
     <div>
@@ -27,13 +27,14 @@
     // 地図要所の取得
     const mapElement = document.getElementById('map');
 
-    // 一覧で表示していた箇所の緯度経度の情報を取得
     const latitudeElement = document.getElementById('latitude');
     const longitudeElement = document.getElementById('longitude');
 
-    // 取得した緯度経度、データがなければデフォルトの東京を表示するよう設定
-    const lat = latitudeElement ? parseFloat(latitudeElement.getAttribute('data-value')) : 35.6803997;
-    const lng = longitudeElement ? parseFloat(longitudeElement.getAttribute('data-value')) : 139.7690174;
+    current_lat = parseFloat(latitudeElement.getAttribute('data-value'));
+    current_lng = parseFloat(longitudeElement.getAttribute('data-value'));
+
+    const lat =  current_lat? current_lat : 35.6803997;
+    const lng =  current_lng? current_lng : 139.7690174;
 
     const defaultlocation = { lat: lat, lng: lng };
 
@@ -50,6 +51,9 @@
         const center = map.getCenter();
         const lat = center.lat();
         const lng = center.lng();
+        console.log(lat);
+        console.log(lng);
+
         // `hidden_field`に値を設定
         document.getElementById('map_center_lat').value = lat;
         document.getElementById('map_center_lng').value = lng;
