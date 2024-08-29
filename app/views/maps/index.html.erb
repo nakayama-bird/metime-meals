@@ -1,5 +1,7 @@
 <div class='text-center mt-6'>
   <%= render 'search_post_form', search_form: @search_form %>
+  <p id="latitude" data-value="<%= @map_center_lat %>"></p>
+  <p id="longitude" data-value="<%= @map_center_lng %>"></p>
 </div>
 <div>
     <div>
@@ -22,11 +24,19 @@
 <script>
     let map, infoWindow;
     function initMap() {
-    // デフォルトポジション（東京周辺）の定義
-    const defaultlocation = { lat: 35.6803997, lng: 139.7690174 };
-
     // 地図要所の取得
     const mapElement = document.getElementById('map');
+
+    const latitudeElement = document.getElementById('latitude');
+    const longitudeElement = document.getElementById('longitude');
+
+    current_lat = parseFloat(latitudeElement.getAttribute('data-value'));
+    current_lng = parseFloat(longitudeElement.getAttribute('data-value'));
+
+    const lat =  current_lat? current_lat : 35.6803997;
+    const lng =  current_lng? current_lng : 139.7690174;
+
+    const defaultlocation = { lat: lat, lng: lng };
 
     // 初期表示の設定
     const mapOptions = {
@@ -36,6 +46,17 @@
 
     const map = new google.maps.Map(mapElement, mapOptions);
     infoWindow = new google.maps.InfoWindow();
+    
+    map.addListener('center_changed', function() {
+        const center = map.getCenter();
+        const lat = center.lat();
+        const lng = center.lng();
+
+        // `hidden_field`に値を設定
+        document.getElementById('map_center_lat').value = lat;
+        document.getElementById('map_center_lng').value = lng;
+    });
+    
 
     // 位置情報取得用のボタンの定義
     const locationButton = document.getElementById("current-location-button");
