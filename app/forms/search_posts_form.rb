@@ -5,6 +5,8 @@ class SearchPostsForm
   # フォームと関連付けするための属性。ActiveModel::Attributesがあるから設定できる。
   attribute :address_or_name, :string
   attribute :genre_select, :string
+  attribute :map_center_lat, :float
+  attribute :map_center_lng, :float
 
   def search
     scope = Post.distinct
