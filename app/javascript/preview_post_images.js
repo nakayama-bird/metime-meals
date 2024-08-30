@@ -27,10 +27,15 @@ document.addEventListener('turbo:load', function() {
             }
 
             reader.onerror = function(e) {
-                 // 何かエラーハンドリングが必要な場合はここに追加
+                // 何かエラーハンドリングが必要な場合はここに追加
             }
 
             reader.readAsDataURL(file);
         }
     });
+
+    // エラーメッセージ表示後に空にする
+    // if (document.getElementById('error_explanation')) {
+    //     previewImages.innerHTML = '';
+    // }
 });
