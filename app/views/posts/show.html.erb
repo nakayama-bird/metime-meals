@@ -13,6 +13,11 @@
         <%= link_to '＜戻る', posts_path  %>
     <% end %>
     </div>
+        <% if logged_in? %>
+    <div class='grid grid-cols-3 grid-cols-8 mt-10'>
+        <div class='ml-5 col-start-7'><%= render 'bookmark_buttons', { post: @post } %></div>
+    </div>
+    <% end %>
     <div class='md:w-1/2 mx-auto'>
         <div class='text-center mt-6'>
             <h2 class='text-base mb-2 font-medium'>

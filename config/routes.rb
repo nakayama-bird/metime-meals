@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create]
   resources :posts do
     collection do
-      get :search
+      get :search, :bookmarks
     end
   end
   resources :password_resets, only: %i[new create edit update]
@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   namespace :mypage do
     resources :posts, only: %i[index]
   end
+
+  resources :bookmarks, only: %i[create destroy]
 
   post "oauth/callback" => "oauths#callback"
   get "oauth/callback" => "oauths#callback"
