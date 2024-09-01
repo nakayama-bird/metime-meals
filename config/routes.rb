@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create]
   resources :posts do
     collection do
-      get :search, :bookmarks
+      get :search
     end
   end
   resources :password_resets, only: %i[new create edit update]
@@ -29,6 +29,7 @@ Rails.application.routes.draw do
 
   namespace :mypage do
     resources :posts, only: %i[index]
+    resources :bookmark_posts, only: [:index]
   end
 
   resources :bookmarks, only: %i[create destroy]
