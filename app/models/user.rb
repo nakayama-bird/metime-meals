@@ -18,6 +18,9 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :bookmark_posts, through: :bookmarks, source: :post
 
+  enum gender: { male: 0, female: 1 }
+  enum age: { teens: 0, twenties: 1, thirties: 2, forties: 3, fifties: 4, over_sixties: 5 }
+
   def own?(object)
     object.user_id == id
   end

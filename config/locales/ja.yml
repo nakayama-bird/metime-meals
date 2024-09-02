@@ -23,6 +23,16 @@ ja:
         four_thousand_level: 4000円台
         five_thousand_level: 5000円台
         more_than_six_thousand: 6000円以上
+      user/gender:
+        male: 男性
+        female: 女性
+      user/age:
+        teens: 10代
+        twenties: 20代
+        thirties: 30代
+        forties: 40代
+        fifties: 50代
+        over_sixties: 60代以上
       user:
         email: メールアドレス
         name: 名前
