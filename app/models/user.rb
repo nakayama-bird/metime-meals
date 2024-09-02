@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
   mount_uploader :avatar, AvatarUploader
+  attribute :gender, :integer
+  attribute :age, :integer
 
   validates :password, length: { minimum: 6 }, if: -> { new_record? || changes[:crypted_password] } # パスワードは6文字以上
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }

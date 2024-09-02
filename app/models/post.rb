@@ -1,6 +1,8 @@
 class Post < ApplicationRecord
   mount_uploaders :post_images, PostImageUploader
 
+  attribute :amount, :integer
+
   belongs_to :user
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
