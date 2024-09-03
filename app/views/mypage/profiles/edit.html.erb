@@ -1,0 +1,37 @@
+<div class='container'>
+    <div class='text-center mt-6'>
+        <h1 class='text-2xl font-semibold'>ユーザー情報更新</h1>
+    </div>
+    <%= form_with model: @user, url: mypage_profiles_path, method: :put do |f| %>
+    <%= render 'shared/error_messages', model: f.object %>
+
+        <%= f.label :name, class: 'label w-full md:w-1/2 mx-auto'%>
+        <%= f.text_field :name, class: 'input input-bordered input-accent form-control mb-6 w-full md:w-1/2 mx-auto' %>
+
+        <div class="flex flex-col md:flex-row justify-center mb-6">
+
+            <div class='w-full md:w-1/4 px-2 mb-4 md:mb-0'> 
+                <%= f.label :gender, class: 'label' %>
+                <%= f.select :gender, User.enum_options_for_select(:gender), { include_blank: "未選択" },
+                            class: 'bg-card-body bg-base-100 rounded-3xl border border-accent py-2 px-3 w-full' %>
+            </div>
+
+            <div class='w-full md:w-1/4 px-2'>
+                <%= f.label :age, class: 'label' %>
+                <%= f.select :age, User.enum_options_for_select(:age), { include_blank: "未選択" },
+                            class: 'bg-card-body bg-base-100 rounded-3xl border border-accent py-2 px-3 w-full' %>
+            </div>
+        </div>
+
+        <div>
+            <%= f.label :avatar, class: 'label w-full md:w-1/2 mx-auto'%>
+            <%= f.file_field :avatar,  id: 'post-images-input',  class: 'file-input file-input-bordered file-input-accent form-control w-full md:w-1/2 mx-auto'%>
+        </div>
+
+        <div id="preview-post-images" class="flex flex-wrap justify-center"></div>
+
+        <div class='mx-auto md:w-1/2'>
+            <%= f.submit '登録', class: 'btn btn-primary w-full mt-6 mb-6 mx-auto' %>
+        </div>
+    <% end %>
+</div>

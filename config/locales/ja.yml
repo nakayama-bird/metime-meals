@@ -38,6 +38,9 @@ ja:
         name: 名前
         password: パスワード
         password_confirmation: パスワード確認
+        gender: 性別
+        age: 年齢層
+        avatar: アイコン
       post:
         restaurant_name: お店の名前
         address: 住所

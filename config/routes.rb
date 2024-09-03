@@ -29,7 +29,8 @@ Rails.application.routes.draw do
 
   namespace :mypage do
     resources :posts, only: %i[index]
-    resources :bookmark_posts, only: [:index]
+    resources :bookmark_posts, only: %i[index]
+    resource :profiles, only: %i[show edit update]
   end
 
   resources :bookmarks, only: %i[create destroy]
