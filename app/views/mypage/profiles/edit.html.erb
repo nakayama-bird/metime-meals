@@ -25,8 +25,7 @@
 
         <div>
             <%= f.label :avatar, class: 'label w-full md:w-1/2 mx-auto'%>
-            <%= f.file_field :avatar,  id: ':avatar-input',  class: 'file-input file-input-bordered file-input-accent form-control w-full md:w-1/2 mx-auto'%>
-            <%= f.hidden_field :avatar_cache %>
+            <%= f.file_field :avatar,  id: 'post-images-input',  class: 'file-input file-input-bordered file-input-accent form-control w-full md:w-1/2 mx-auto'%>
         </div>
 
         <div id="preview-post-images" class="flex flex-wrap justify-center"></div>
