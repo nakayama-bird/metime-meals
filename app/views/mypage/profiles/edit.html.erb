@@ -23,6 +23,14 @@
             </div>
         </div>
 
+        <div>
+            <%= f.label :avatar, class: 'label w-full md:w-1/2 mx-auto'%>
+            <%= f.file_field :avatar,  id: ':avatar-input',  class: 'file-input file-input-bordered file-input-accent form-control w-full md:w-1/2 mx-auto'%>
+            <%= f.hidden_field :avatar_cache %>
+        </div>
+
+        <div id="preview-post-images" class="flex flex-wrap justify-center"></div>
+
         <div class='mx-auto md:w-1/2'>
             <%= f.submit '登録', class: 'btn btn-primary w-full mt-6 mb-6 mx-auto' %>
         </div>
