@@ -41,10 +41,10 @@
 
     <div>
       <%= f.label :post_images, class: 'label w-full md:w-1/2 mx-auto'%>
-      <%= f.file_field :post_images, multiple: true, id: 'post-images-input', include_hidden: false, class: 'file-input file-input-bordered file-input-accent form-control w-full md:w-1/2 mx-auto'%>
+      <%= f.file_field :post_images, multiple: true, id: 'images-input', include_hidden: false, class: 'file-input file-input-bordered file-input-accent form-control w-full md:w-1/2 mx-auto'%>
     </div>
 
-    <div id="preview-post-images" class="flex flex-wrap justify-center"></div>
+    <div id="preview-images" class="flex flex-wrap justify-center"></div>
 
     <%= f.label :amount, class: 'label w-full md:w-1/2 mx-auto' %>
     <div class='mx-auto w-full md:w-1/2 text-center'>

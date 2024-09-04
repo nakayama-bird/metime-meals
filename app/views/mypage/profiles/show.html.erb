@@ -12,7 +12,7 @@
         <div>
             <div class="bg-white relative shadow rounded-lg w-5/6 md:w-5/6 lg:w-4/6 xl:w-3/6 mx-auto">
                 <div class="flex justify-center">
-                    <%= image_tag current_user.avatar_url, class: "rounded-full mx-auto absolute -top-16 w-24 h-24 shadow-md border-4 border-white transition duration-200 transform hover:scale-110" %>
+                    <%= image_tag current_user.avatar_url, class: "rounded-full mx-auto absolute -top-16 w-24 h-24 shadow-md border-4 border-white transition duration-200 transform" %>
 
                 </div>
                 <div class="mt-12"> 
@@ -23,15 +23,15 @@
 
                     <div class="w-full">
                         <div class="mt-4 w-full flex flex-col items-center overflow-hidden text-sm"> 
-                            <a class="w-full border-t border-gray-100 text-gray-600 py-3 pl-4 pr-2 w-full block hover:bg-gray-100 transition duration-150 flex items-center"> <!-- py-4 から py-3、pl-6 から pl-4、pr-3 から pr-2 に変更して余白を縮小 -->
+                            <a class="w-full border-t border-gray-100 text-gray-600 py-3 pl-4 pr-2 w-full block transition duration-150 flex items-center"> 
                                 <span class="material-icons mr-2">person</span>
                                 <%= current_user.name %>
                             </a>
-                            <a class="w-full border-t border-gray-100 text-gray-600 py-3 pl-4 pr-2 w-full block hover:bg-gray-100 transition duration-150 flex items-center"> <!-- py-4 から py-3、pl-6 から pl-4、pr-3 から pr-2 に変更して余白を縮小 -->
+                            <a class="w-full border-t border-gray-100 text-gray-600 py-3 pl-4 pr-2 w-full block transition duration-150 flex items-center"> 
                                 <span class="material-icons mr-2">mail_outline</span>
                                 <%= current_user.email %>
                             </a>
-                            <a class="w-full border-t border-gray-100 text-gray-600 py-3 pl-4 pr-2 w-full block hover:bg-gray-100 transition duration-150 flex items-center"> <!-- py-4 から py-3、pl-6 から pl-4、pr-3 から pr-2 に変更して余白を縮小 -->
+                            <a class="w-full border-t border-gray-100 text-gray-600 py-3 pl-4 pr-2 w-full block transition duration-150 flex items-center"> 
                                 <span class="material-icons mr-2">
                                     <%= if current_user.gender.present?
                                         current_user.gender == "male" ? "man" : "woman"
@@ -41,7 +41,7 @@
                                 </span>
                                 <%= current_user.gender ? current_user.human_attribute_enum(:gender) : "回答なし" %>
                             </a>
-                            <a class="w-full border-t border-gray-100 text-gray-600 py-3 pl-4 pr-2 w-full block hover:bg-gray-100 transition duration-150 flex items-center"> <!-- py-4 から py-3、pl-6 から pl-4、pr-3 から pr-2 に変更して余白を縮小 -->
+                            <a class="w-full border-t border-gray-100 text-gray-600 py-3 pl-4 pr-2 w-full block transition duration-150 flex items-center"> 
                                 <span class="material-icons mr-2">
                                     <%= current_user.age ? "numbers" : "help_outline" %>
                                 </span>

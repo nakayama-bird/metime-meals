@@ -25,13 +25,17 @@
 
         <div>
             <%= f.label :avatar, class: 'label w-full md:w-1/2 mx-auto'%>
-            <%= f.file_field :avatar,  id: 'post-images-input',  class: 'file-input file-input-bordered file-input-accent form-control w-full md:w-1/2 mx-auto'%>
+            <%= f.file_field :avatar,  id: 'images-input',  class: 'file-input file-input-bordered file-input-accent form-control w-full md:w-1/2 mx-auto'%>
         </div>
 
-        <div id="preview-post-images" class="flex flex-wrap justify-center"></div>
+        <div id="preview-images" class="flex flex-wrap justify-center"></div>
 
         <div class='mx-auto md:w-1/2'>
-            <%= f.submit '登録', class: 'btn btn-primary w-full mt-6 mb-6 mx-auto' %>
+            <%= f.submit '登録', class: 'btn btn-primary w-full mt-6 mb-6 mx-auto', id: "submit-button" %>
+        </div>
+
+        <div id="loading-modal" class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+            <%= render 'shared/modal'%>
         </div>
     <% end %>
 </div>
