@@ -9,46 +9,41 @@
     </div>
 
     <div class="container mx-auto my-20"> 
-        <div>
-            <div class="bg-white relative shadow rounded-lg w-5/6 md:w-5/6 lg:w-4/6 xl:w-3/6 mx-auto">
-                <div class="flex justify-center">
-                    <%= image_tag current_user.avatar_url, class: "rounded-full mx-auto absolute -top-16 w-24 h-24 shadow-md border-4 border-white transition duration-200 transform hover:scale-110" %>
+        <div class="bg-white relative shadow rounded-lg w-5/6 md:w-5/6 lg:w-4/6 xl:w-3/6 mx-auto">
+            <div class="flex flex-col items-center">
+                <%= image_tag current_user.avatar_url, class: "rounded-full w-24 h-24 shadow-md border-4 border-white transition duration-200 transform -mt-12 md:-mt-16" %>
+                <h1 class="font-bold text-center text-2xl text-gray-900 mt-4 md:mt-8"><%= current_user.name %></h1>
+            </div>
+            <div class="my-4 px-4">
+                <%= link_to "ユーザー情報更新", edit_mypage_profiles_path, class: "btn btn-primary block rounded-lg text-center font-bold leading-8 px-4 py-2" %>
+            </div>
 
-                </div>
-                <div class="mt-12"> 
-                    <h1 class="font-bold text-center text-2xl text-gray-900"><%= current_user.name %></h1> 
-                    <div class="my-4 px-4">
-                        <%= link_to "ユーザー情報更新", edit_mypage_profiles_path, class: "btn btn-primary block rounded-lg text-center font-bold leading-8 px-4 py-2" %>
-                    </div>
-
-                    <div class="w-full">
-                        <div class="mt-4 w-full flex flex-col items-center overflow-hidden text-sm"> 
-                            <a class="w-full border-t border-gray-100 text-gray-600 py-3 pl-4 pr-2 w-full block hover:bg-gray-100 transition duration-150 flex items-center"> <!-- py-4 から py-3、pl-6 から pl-4、pr-3 から pr-2 に変更して余白を縮小 -->
-                                <span class="material-icons mr-2">person</span>
-                                <%= current_user.name %>
-                            </a>
-                            <a class="w-full border-t border-gray-100 text-gray-600 py-3 pl-4 pr-2 w-full block hover:bg-gray-100 transition duration-150 flex items-center"> <!-- py-4 から py-3、pl-6 から pl-4、pr-3 から pr-2 に変更して余白を縮小 -->
-                                <span class="material-icons mr-2">mail_outline</span>
-                                <%= current_user.email %>
-                            </a>
-                            <a class="w-full border-t border-gray-100 text-gray-600 py-3 pl-4 pr-2 w-full block hover:bg-gray-100 transition duration-150 flex items-center"> <!-- py-4 から py-3、pl-6 から pl-4、pr-3 から pr-2 に変更して余白を縮小 -->
-                                <span class="material-icons mr-2">
-                                    <%= if current_user.gender.present?
-                                        current_user.gender == "male" ? "man" : "woman"
-                                    else
-                                        "help_outline"
-                                    end %>
-                                </span>
-                                <%= current_user.gender ? current_user.human_attribute_enum(:gender) : "回答なし" %>
-                            </a>
-                            <a class="w-full border-t border-gray-100 text-gray-600 py-3 pl-4 pr-2 w-full block hover:bg-gray-100 transition duration-150 flex items-center"> <!-- py-4 から py-3、pl-6 から pl-4、pr-3 から pr-2 に変更して余白を縮小 -->
-                                <span class="material-icons mr-2">
-                                    <%= current_user.age ? "numbers" : "help_outline" %>
-                                </span>
-                                <%= current_user.age ? current_user.human_attribute_enum(:age) : "回答なし" %>
-                            </a>
-                        </div>
-                    </div>
+            <div class="w-full">
+                <div class="mt-4 w-full flex flex-col items-center overflow-hidden text-sm"> 
+                    <a class="w-full border-t border-gray-100 text-gray-600 py-3 pl-4 pr-2 w-full block transition duration-150 flex items-center"> 
+                        <span class="material-icons mr-2">person</span>
+                        <%= current_user.name %>
+                    </a>
+                    <a class="w-full border-t border-gray-100 text-gray-600 py-3 pl-4 pr-2 w-full block transition duration-150 flex items-center"> 
+                        <span class="material-icons mr-2">mail_outline</span>
+                        <%= current_user.email %>
+                    </a>
+                    <a class="w-full border-t border-gray-100 text-gray-600 py-3 pl-4 pr-2 w-full block transition duration-150 flex items-center"> 
+                        <span class="material-icons mr-2">
+                            <%= if current_user.gender.present?
+                                current_user.gender == "male" ? "man" : "woman"
+                            else
+                                "help_outline"
+                            end %>
+                        </span>
+                        <%= current_user.gender ? current_user.human_attribute_enum(:gender) : "回答なし" %>
+                    </a>
+                    <a class="w-full border-t border-gray-100 text-gray-600 py-3 pl-4 pr-2 w-full block transition duration-150 flex items-center"> 
+                        <span class="material-icons mr-2">
+                            <%= current_user.age ? "numbers" : "help_outline" %>
+                        </span>
+                        <%= current_user.age ? current_user.human_attribute_enum(:age) : "回答なし" %>
+                    </a>
                 </div>
             </div>
         </div>

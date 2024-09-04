@@ -1,12 +1,12 @@
 document.addEventListener('turbo:load', function() {
-    let postImagesInput = document.getElementById('post-images-input');
-    let previewImages = document.getElementById('preview-post-images');
+    let imagesInput = document.getElementById('images-input');
+    let previewImages = document.getElementById('preview-images');
 
-    if (!postImagesInput) {
+    if (!imagesInput) {
         return;
     }
 
-    postImagesInput.addEventListener('change', function(event) {
+    imagesInput.addEventListener('change', function(event) {
         previewImages.innerHTML = '';
 
         let files = event.target.files;
