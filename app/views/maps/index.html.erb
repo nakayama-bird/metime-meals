@@ -42,6 +42,7 @@
     const mapOptions = {
         center: defaultlocation,
         zoom: 14,
+        disableDefaultUI: true,
     }
 
     const map = new google.maps.Map(mapElement, mapOptions);
@@ -95,13 +96,28 @@
     // 投稿一覧を地図上で表示
     <% @posts.each do |post| %>
       (() => {
+        const highRatingImage = "https://maps.google.com/mapfiles/kml/paddle/orange-stars.png";
+
+        // 通常のピンアイコン（評価が低い投稿用）
+        const defaultImage = "https://maps.google.com/mapfiles/kml/paddle/ylw-blank.png";
+
+        // 投稿の評価に基づいてアイコンを選択
+        const iconImage = <%= post.rating_before_type_cast + 1 %> >= 4 ? highRatingImage : defaultImage;
         let marker = new google.maps.Marker({
             position: { lat: <%= post.latitude %>, lng: <%= post.longitude %> },
-            map: map
+            map: map,
+            icon: iconImage,
+            scaledSize: new google.maps.Size(50, 50),
         });
 
         marker.addListener('click', function() {
         const modalContent = `
+         <div class="flex items-center">
+                <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                </svg>
+                <p class="mr-2 text-sm font-bold"><%= post.rating_before_type_cast + 1 %></p>
+            </div>
         <div class='text-center mb-3'>
             <div><%= post.human_attribute_enum(:genre) %></div>
             <div class='text-lg font-semibold'><%= post.restaurant_name %></div>
