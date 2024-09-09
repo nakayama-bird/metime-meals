@@ -1,11 +1,15 @@
 <footer class="footer footer-center bg-base-100 tent-base-content p-4 mb-20">
   <nav class="grid grid-flow-col gap-4">
     <a class="link linkhover"></a>
+    <%= link_to "利用規約", term_path, class:"link link-hover" %>
+    <%= link_to "プライバシーポリシー", policy_path, class:"link link-hover" %>
     <%= link_to "お問い合わせ先", "https://docs.google.com/forms/d/1Ad-CivQQLp9Sw4JdCnWAlzRfSZ5Wp3yKqBRd3zqgwUI/edit?pli=1", class:"link link-hover" %>
-    <%= link_to "利用規約", "#", class:"link link-hover" %>
-    <%= link_to "プライバシーポリシー", "#", class:"link link-hover" %>
   </nav>
   <aside>
+    <div class="flex justify-center items-center">
+      <div><%= link_to image_tag("github-mark.png", class: 'w-8 h-8 mr-3'), "https://github.com/nakayama-bird", class: 'flex-shrink-0' %></div>
+      <div><%= link_to image_tag("logo-black.png", class: 'w-8 h-8 ml-3'), "https://x.com/nakayama_tori", class: 'flex-shrink-0' %></div>
+    </div>
     <p>© 2024 - metime-meals</p>
   </aside>
 </footer>
