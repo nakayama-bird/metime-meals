@@ -9,7 +9,7 @@
     <% if request.referer.present? %>
         <% referer_path = URI(request.referer).path %>
         <% if referer_path == maps_path %>
-            <%= link_to '＜戻る', maps_path  %>
+            <%= link_to '＜戻る', maps_path, data: { turbo: false }  %>
         <% elsif referer_path == mypage_posts_path  %>
             <%= link_to '＜戻る', mypage_posts_path  %>
         <% elsif referer_path == mypage_bookmark_posts_path  %>
