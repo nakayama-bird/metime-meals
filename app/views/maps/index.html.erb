@@ -1,3 +1,4 @@
+<% content_for :title, page_title('マップ') %>
 <div class='text-center mt-6'>
   <%= render 'search_post_form', search_form: @search_form %>
   <p id="latitude" data-value="<%= @map_center_lat %>"></p>
