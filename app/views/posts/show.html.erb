@@ -21,11 +21,12 @@
         <%= link_to '＜戻る', posts_path  %>
     <% end %>
     </div>
+    <div class='grid grid-cols-3 grid-cols-12 mt-10'>
         <% if logged_in? %>
-    <div class='grid grid-cols-3 grid-cols-8 mt-10'>
-        <div class='ml-5 col-start-7'><%= render 'bookmark_buttons', { post: @post } %></div>
+        <div class='col-start-10 mt-1'><%= render 'bookmark_buttons', { post: @post } %></div>
+        <% end %>
+        <button class='col-start-11' id="link"><%= image_tag("logo-black.png", class: 'w-5 h-5 ml-3')%></button>
     </div>
-    <% end %>
     <div class='md:w-1/2 mx-auto'>
         <div class='text-center mt-6'>
             <h2 class='text-base mb-2 font-medium'>
@@ -163,5 +164,16 @@
         });
     });
     }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const link = document.getElementById('link');
+        link.addEventListener('click', function() {
+        const postUrl = encodeURIComponent("<%= post_url(@post) %>");
+        const restaurantName = encodeURIComponent("<%= @post.restaurant_name %>");
+        const tweetText = `【ひとり外食投稿アプリ】%0aMeTimeMealsで${restaurantName}をチェック！%23Me_Time_Meals`;
+
+        window.open(`https://twitter.com/intent/tweet?url=${postUrl}&text=${tweetText}`, '_blank');
+        });
+    });
 </script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap"></script>
