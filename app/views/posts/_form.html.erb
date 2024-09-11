@@ -19,11 +19,11 @@
     <%= f.label :rating, class: 'label w-full md:w-1/2 mx-auto'  %>
     <div class="mx-auto w-full md:w-1/2 text-center">
       <div class="rating rating-lg">
-        <%= f.radio_button :rating, :very_poor, class: 'mask mask-star-2 bg-orange-400' %>
-        <%= f.radio_button :rating, :poor, class: 'mask mask-star-2 bg-orange-400' %>
-        <%= f.radio_button :rating, :good, class: 'mask mask-star-2 bg-orange-400' %>
-        <%= f.radio_button :rating, :better,class: 'mask mask-star-2 bg-orange-400' %>              
-        <%= f.radio_button :rating, :excellent,class: 'mask mask-star-2 bg-orange-400' %>
+        <%= f.radio_button :rating, :very_poor, class: 'mask mask-star-2 bg-secondary' %>
+        <%= f.radio_button :rating, :poor, class: 'mask mask-star-2 bg-secondary' %>
+        <%= f.radio_button :rating, :good, class: 'mask mask-star-2 bg-secondary' %>
+        <%= f.radio_button :rating, :better,class: 'mask mask-star-2 bg-secondary' %>              
+        <%= f.radio_button :rating, :excellent,class: 'mask mask-star-2 bg-secondary' %>
       </div>
     </div>
 
@@ -41,7 +41,7 @@
 
     <div>
       <%= f.label :post_images, class: 'label w-full md:w-1/2 mx-auto'%>
-      <%= f.file_field :post_images, multiple: true, id: 'images-input', include_hidden: false, class: 'file-input file-input-bordered file-input-accent form-control w-full md:w-1/2 mx-auto'%>
+      <%= f.file_field :post_images, multiple: true, id: 'images-input', include_hidden: false, class: 'file-input file-input-bordered file-input-secondary form-control w-full md:w-1/2 mx-auto'%>
     </div>
 
     <div id="preview-images" class="flex flex-wrap justify-center"></div>

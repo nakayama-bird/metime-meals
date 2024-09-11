@@ -4,10 +4,13 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <body class="bg-icicle text-gray-800 font-zen relative pb-16">
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <%# Google icon  %>
     <%= stylesheet_link_tag 'https://fonts.googleapis.com/icon?family=Material+Icons', media: 'all'%>
+    <%# meta_tags %>
      <%= show_meta_tags %>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-K5HPRJCQX8"></script>
@@ -18,6 +21,7 @@
 
       gtag('config', 'G-K5HPRJCQX8');
     </script>
+
   </head>
 
   <body>
