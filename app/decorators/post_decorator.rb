@@ -17,6 +17,10 @@ class PostDecorator < Draper::Decorator
     stars.html_safe
   end
 
+  def display_amount
+    object.amount ? object.human_attribute_enum(:amount) : '????'
+  end
+
   # Define presentation-specific methods here. Helpers are accessed through
   # `helpers` (aka `h`). You can override attributes, for example:
   #
