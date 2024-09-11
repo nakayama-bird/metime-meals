@@ -6,6 +6,14 @@ module.exports = {
     './app/assets/stylesheets/**/*.css',
     './app/javascript/**/*.js'
   ],
+  theme: {
+    extend:{
+      fontFamily: {
+      'zen': ['Zen Kaku Gothic New', 'sans-serif'],
+      'lilita': ['Lilita One', 'system-ui'],
+    },
+  },
+  },
   plugins: [require("daisyui")],
   daisyui: {
     themes: ["cupcake"],
