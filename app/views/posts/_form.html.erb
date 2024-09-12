@@ -4,17 +4,17 @@
     <%= f.label :genre, '料理のジャンル', class: 'label w-full md:w-1/2 mx-auto' %>
     <div class='mx-auto w-full md:w-1/2 text-center'>
         <%= f.select :genre, Post.enum_options_for_select(:genre), { include_blank: "未選択" },
-                    class: 'bg-card-body bg-base-100 rounded-3xl border border-accent py-2 px-3 mb-6 w-full md:w-1/2 mx-auto' %>
+                    class: 'bg-card-body bg-base-100 rounded-md border border-accent py-2 px-3 mb-6 w-full ms:w-1/2' %>
     </div>
 
     <%= f.label :restaurant_name, class: 'label w-full md:w-1/2 mx-auto' %>
     <%= f.text_field :restaurant_name, class: 'input input-borderd input-accent form-control mb-6 w-full md:w-1/2 mx-auto', id:'autocomplete', placeholder: 'お店の名前を入力してください' %>
 
     <%= f.label :address, class: 'label w-full md:w-1/2 mx-auto' %>
-    <%= f.text_field :address, class: 'input input-borderd input-accent form-control mb-6 w-full md:w-1/2 mx-auto', id: 'address' %>
+    <%= f.text_field :address, class: 'input input-borderd input-accent form-control mb-6 w-full md:w-1/2 mx-auto', id: 'address', placeholder: 'お店の名前を入力すると自動で補完されます' %>
 
     <%= f.label :body,  class: 'label w-full md:w-1/2 mx-auto' %>
-    <%= f.text_area :body, class: 'input input-borderd input-accent form-control mb-6 w-full md:w-1/2 mx-auto h-auto', rows: 5, placeholder: '一人で行く時嬉しいサービス、メニューやお店のおすすめポイントを入力してください' %>
+    <%= f.text_area :body, class: 'input input-borderd input-accent form-control mb-6 w-full md:w-1/2 mx-auto h-auto', rows: 5, placeholder: '一人で外食する際に嬉しいサービス、メニューやお店のおすすめポイントを入力してください' %>
 
     <%= f.label :rating, class: 'label w-full md:w-1/2 mx-auto'  %>
     <div class="mx-auto w-full md:w-1/2 text-center">
@@ -30,26 +30,26 @@
     <%= f.label :tag_names,'タグ（5つまで）',class: 'label w-full md:w-1/2 mx-auto' %>
     <%= f.text_field :tag_names, class: 'input input-borderd input-accent form-control mb-6 w-full md:w-1/2 mx-auto', placeholder: ',で区切って入力してください' %>
     <div class="flex justify-center flex-wrap">
-      <%= link_to '券売機', '#', class: 'tag-link badge badge-ghost badge-base mr-2 mt-2 mb-1' %>
-      <%= link_to 'カウンター', '#', class: 'tag-link badge badge-ghost badge-base mr-2 mt-2 mb-1' %>
-      <%= link_to 'スマホ注文', '#', class: 'tag-link badge badge-ghost badge-base mr-2 mt-2 mb-1' %>
-      <%= link_to 'タブレット注文', '#', class: 'tag-link badge badge-ghost badge-base mr-2 mt-2 mb-1' %>
-      <%= link_to '1人用メニュー', '#', class: 'tag-link badge badge-ghost badge-base mr-2 mt-2 mb-1' %>
-      <%= link_to '静か', '#', class: 'tag-link badge badge-ghost badge-base mr-2 mt-2 mb-1' %>
-      <%= link_to '広々', '#', class: 'tag-link badge badge-ghost badge-base mr-2 mt-2 mb-1' %>
+      <%= link_to '券売機', '#', class: 'tag-link badge badge-ghost badge-lg mr-4 mt-4 mb-3' %>
+      <%= link_to 'カウンター', '#', class: 'tag-link badge badge-ghost badge-lg mr-4 mt-4 mb-3' %>
+      <%= link_to 'スマホ注文', '#', class: 'tag-link badge badge-ghost badge-lg mr-4 mt-4 mb-3' %>
+      <%= link_to 'タブレット注文', '#', class: 'tag-link badge badge-ghost badge-lg mr-4 mt-4 mb-3' %>
+      <%= link_to '1人用メニュー', '#', class: 'tag-link badge badge-ghost badge-lg mr-4 mt-4 mb-3' %>
+      <%= link_to '静か', '#', class: 'tag-link badge badge-ghost badge-lg mr-4 mt-4 mb-3' %>
+      <%= link_to '広々', '#', class: 'tag-link badge badge-ghost badge-lg mr-4 mt-4 mb-3' %>
     </div>
 
     <div>
-      <%= f.label :post_images, class: 'label w-full md:w-1/2 mx-auto'%>
+      <%= f.label :post_images, class: 'label w-full md:w-1/2 mx-auto mt-5'%>
       <%= f.file_field :post_images, multiple: true, id: 'images-input', include_hidden: false, class: 'file-input file-input-bordered file-input-secondary form-control w-full md:w-1/2 mx-auto'%>
     </div>
 
     <div id="preview-images" class="flex flex-wrap justify-center"></div>
 
-    <%= f.label :amount, class: 'label w-full md:w-1/2 mx-auto' %>
+    <%= f.label :amount, class: 'label w-full md:w-1/2 mx-auto mt-5' %>
     <div class='mx-auto w-full md:w-1/2 text-center'>
         <%= f.select :amount, Post.enum_options_for_select(:amount), { include_blank: "未選択" },
-                    class: 'bg-card-body bg-base-100 rounded-3xl border border-accent py-2 px-3 mb-6 w-full md:w-1/2 mx-auto' %>
+                    class: 'bg-card-body bg-base-100 rounded-md border border-accent py-2 px-3 mb-6 w-full ms:w-1/2' %>
     </div>
 
     <div class='mx-auto md:w-1/2'>

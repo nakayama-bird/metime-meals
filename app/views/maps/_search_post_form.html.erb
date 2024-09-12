@@ -9,7 +9,7 @@
   <div class="w-full md:w-1/2 px-2 flex items-center">
     <%= f.select :genre_select, Post.enum_options_for_select(:genre), { include_blank: "ジャンル未選択" },
         id: 'search_field_of_genre',
-        class: 'bg-card-body bg-base-100 rounded-3xl border border-accent py-2 px-3 mb-6 w-full h-12' %>
+        class: 'bg-card-body bg-base-100 rounded-md border border-accent py-2 px-3 mb-6 w-full h-12' %>
   </div>
 
   <%= f.hidden_field :map_center_lat, id: 'map_center_lat' %>
