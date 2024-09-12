@@ -5,27 +5,27 @@
 <% end %>
 
 <div class='container rounded-xl shadow-xl p-6 max-w-xs md:max-w-3xl mx-auto my-10 border border-white bg-base-100'>
-    <div class='ml-6 mt-6'>
+    <div class='mt-6'>
     <% if request.referer.present? %>
         <% referer_path = URI(request.referer).path %>
         <% if referer_path == maps_path %>
-            <%= link_to '＜戻る', maps_path, data: { turbo: false }  %>
+            <%= link_to '＜戻る', maps_path, data: { turbo: false }, class: 'text-xl'  %>
         <% elsif referer_path == mypage_posts_path  %>
-            <%= link_to '＜戻る', mypage_posts_path  %>
+            <%= link_to '＜戻る', mypage_posts_path, class: 'text-xl'  %>
         <% elsif referer_path == mypage_bookmark_posts_path  %>
-            <%= link_to '＜戻る', mypage_bookmark_posts_path  %>
+            <%= link_to '＜戻る', mypage_bookmark_posts_path, class: 'text-xl'  %>
         <% else %>
-            <%= link_to '＜戻る', posts_path  %>
+            <%= link_to '＜戻る', posts_path, class: 'text-xl'  %>
         <% end %>
     <% else %>
-        <%= link_to '＜戻る', posts_path  %>
+        <%= link_to '＜戻る', posts_path, class: 'text-xl'  %>
     <% end %>
     </div>
     <div class='grid grid-cols-3 grid-cols-12 mt-10'>
         <% if logged_in? %>
         <div class='col-start-10 mt-1'><%= render 'bookmark_buttons', { post: @post } %></div>
         <% end %>
-        <button class='col-start-11' id="link"><%= image_tag("logo-black.png", class: 'w-5 h-5 ml-3')%></button>
+        <button class='col-start-11' id="link"><%= image_tag("logo-black.png", class: 'w-10 h-10 ml-3')%></button>
     </div>
     <div class='md:w-1/2 mx-auto'>
         <div class='text-center mt-6'>
@@ -37,27 +37,13 @@
             </h1>
         </div>
         <div class="flex justify-center flex-wrap">
-            <%= render @post.tags %>
+           <%  @post.tags.each do |tag| %>
+           <div class='badge badge-ghost badge-base mr-1 mt-1' ><%= tag.name %></div>
+           <% end %>
         </div>
-        <p class='w-full mx-auto p-5'>
-            おすすめポイント：
+        <p class='w-full mx-auto'>
             <br><%= @post.body %></br>
         </p>
-        <p class='w-full mx-auto p-5'>
-            おひとり様おすすめ度：
-        </p>
-        <div class="flex justify-center flex-wrap">
-        <svg class="w-6 h-6 ml-2 text-secondary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-        </svg>
-            <%= @post.decorate.star_rating %>
-        </div>
-        <% if @post.amount %>
-            <p class='w-full mx-auto p-5'>
-                使用した金額：<%= @post.human_attribute_enum(:amount) %>
-            </p>
-        <% else %>
-        <% end %>
         <div class="my-7">
             <div class="flex justify-center">
                 <% if @post.post_images.present? %>
@@ -94,42 +80,67 @@
             </div>
         </div>
     </div>
-    <div class='md:w-1/2 mx-auto'>
-        <p class='w-full mx-auto p-5'>
-            所在地：
-            <br><%= @post.address %></br>
-        </p>
-        <div id="map" class="w-full h-72"></div>
-    </div>
-    <%# ユーザー削除機能を実装したら分岐を設定 %>
-<div class="max-w-md mx-auto p-5">
-
-    <!-- 全体を横並びにするための flex コンテナ -->
-    <div class="flex flex-col md:flex-row items-center md:space-x-4">
-
-        <!-- ユーザーアイコン -->
-        <%= image_tag @post.user.avatar.url, class: "rounded-full w-16 h-16 shadow-md border-4 border-white transition duration-200" %>
-
-        <!-- ユーザー情報を縦に並べる -->
-        <div class="flex flex-col space-y-2 mt-4 md:mt-0">
-            <p class="text-lg font-semibold text-center md:text-right"><%= @post.user.name %></p>
-            <p class="text-sm text-gray-600 text-center md:text-left"><%= @post.user.gender ? @post.user.human_attribute_enum(:gender) : "" %></p>
-            <p class="text-sm text-gray-600 text-center md:text-left"><%= @post.user.age ? @post.user.human_attribute_enum(:age) : "" %></p>
-        </div>
-
-        <!-- 編集と削除ボタン -->
-        <% if logged_in? %>
-            <% if current_user.own?(@post) %>
-                <div class='flex space-x-4 mt-4 md:mt-0'>
-                    <%= link_to '編集', edit_post_path(@post), class: "btn btn-primary px-4 py-2 md:ml-20" %>
-                    <%= link_to '削除', post_path(@post), data: { turbo_method: :delete, turbo_confirm: '投稿を削除しますか？' }, class: "btn btn-secondary px-4 py-2" %>
+    <table class="table-auto mx-auto">
+        <tbody>
+        <tr>
+            <td class="border px-2 py-2 flex items-center">
+            評価
+            <div class="tooltip ml-2" data-tip="1人外食のおすすめ度です">
+                <button class="btn btn-ghost btn-xs mt-1.5"><span class="material-icons">help_outline</span></button>
+            </div>
+            </td>
+            <td class="border px-2 py-2">
+                <div class="flex flex-wrap">
+                <svg class="w-6 h-6 text-secondary" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                </svg>
+                <%= @post.decorate.star_rating %>
                 </div>
+            </td>
+            </tr>
+            <tr>
+            <td class="border px-2 py-2">予算</td>
+            <td class="border px-2 py-2"><%= @post.decorate.display_amount %></td>
+            </tr>
+            <tr>
+            <td class="border px-2 py-2">住所</td>
+            <td class="border px-2 py-2 max-w-xs break-words"><%= @post.address %></td>
+            </tr>
+            <tr>
+            <td class="border px-2 py-2">地図</td>
+            <td class="border px-2 py-2"><div id="map" class="w-full h-60"></div></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <%# ユーザー削除機能を実装したら分岐を設定 %>
+    <div class="max-w-md mx-auto p-5">
+
+        <!-- 全体を横並びにするための flex コンテナ -->
+        <div class="flex flex-col md:flex-row items-center md:space-x-4">
+
+            <!-- ユーザーアイコン -->
+            <%= image_tag @post.user.avatar.url, class: "rounded-full w-16 h-16 shadow-md border-4 border-white transition duration-200" %>
+
+            <!-- ユーザー情報を縦に並べる -->
+            <div class="flex flex-col space-y-2 mt-4 md:mt-0">
+                <p class="text-lg font-semibold text-center md:text-right"><%= @post.user.name %></p>
+                <p class="text-sm text-gray-600 text-center md:text-left"><%= @post.user.gender ? @post.user.human_attribute_enum(:gender) : "" %></p>
+                <p class="text-sm text-gray-600 text-center md:text-left"><%= @post.user.age ? @post.user.human_attribute_enum(:age) : "" %></p>
+            </div>
+
+            <!-- 編集と削除ボタン -->
+            <% if logged_in? %>
+                <% if current_user.own?(@post) %>
+                    <div class='flex space-x-4 mt-4 md:mt-0'>
+                        <%= link_to '編集', edit_post_path(@post), class: "btn btn-primary px-4 py-2 md:ml-20" %>
+                        <%= link_to '削除', post_path(@post), data: { turbo_method: :delete, turbo_confirm: '投稿を削除しますか？' }, class: "btn btn-secondary px-4 py-2" %>
+                    </div>
+                <% end %>
             <% end %>
-        <% end %>
 
+        </div>
     </div>
-
-</div>
 </div>
 <script>
     function initMap() {
@@ -165,7 +176,7 @@
     });
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('turbo:load', function() {
         const link = document.getElementById('link');
         link.addEventListener('click', function() {
         const postUrl = encodeURIComponent("<%= post_url(@post) %>");
