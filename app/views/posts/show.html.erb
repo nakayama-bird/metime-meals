@@ -176,7 +176,7 @@
     });
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('turbo:load', function() {
         const link = document.getElementById('link');
         link.addEventListener('click', function() {
         const postUrl = encodeURIComponent("<%= post_url(@post) %>");
