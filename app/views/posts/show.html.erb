@@ -5,27 +5,27 @@
 <% end %>
 
 <div class='container rounded-xl shadow-xl p-6 max-w-xs md:max-w-3xl mx-auto my-10 border border-white bg-base-100'>
-    <div class='ml-6 mt-6'>
+    <div class='mt-6'>
     <% if request.referer.present? %>
         <% referer_path = URI(request.referer).path %>
         <% if referer_path == maps_path %>
-            <%= link_to '＜戻る', maps_path, data: { turbo: false }  %>
+            <%= link_to '＜戻る', maps_path, data: { turbo: false }, class: 'text-xl'  %>
         <% elsif referer_path == mypage_posts_path  %>
-            <%= link_to '＜戻る', mypage_posts_path  %>
+            <%= link_to '＜戻る', mypage_posts_path, class: 'text-xl'  %>
         <% elsif referer_path == mypage_bookmark_posts_path  %>
-            <%= link_to '＜戻る', mypage_bookmark_posts_path  %>
+            <%= link_to '＜戻る', mypage_bookmark_posts_path, class: 'text-xl'  %>
         <% else %>
-            <%= link_to '＜戻る', posts_path  %>
+            <%= link_to '＜戻る', posts_path, class: 'text-xl'  %>
         <% end %>
     <% else %>
-        <%= link_to '＜戻る', posts_path  %>
+        <%= link_to '＜戻る', posts_path, class: 'text-xl'  %>
     <% end %>
     </div>
     <div class='grid grid-cols-3 grid-cols-12 mt-10'>
         <% if logged_in? %>
         <div class='col-start-10 mt-1'><%= render 'bookmark_buttons', { post: @post } %></div>
         <% end %>
-        <button class='col-start-11' id="link"><%= image_tag("logo-black.png", class: 'w-5 h-5 ml-3')%></button>
+        <button class='col-start-11' id="link"><%= image_tag("logo-black.png", class: 'w-10 h-10 ml-3')%></button>
     </div>
     <div class='md:w-1/2 mx-auto'>
         <div class='text-center mt-6'>
