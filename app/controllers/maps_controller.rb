@@ -11,10 +11,6 @@ class MapsController < ApplicationController
     end
   end
 
-  # def search
-  #   @posts = @search_form.search.includes(:user).order(created_at: :desc)
-  # end
-
   private
 
   def set_search_posts_form
