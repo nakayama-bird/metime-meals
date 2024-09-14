@@ -74,9 +74,17 @@
               lng: position.coords.longitude,
             };
 
+            // ピン（マーカー）を作成して現在地に表示
+            const marker = new google.maps.Marker({
+              position: pos,
+              map: map,
+              title: "現在地",
+              icon: "https://maps.google.com/mapfiles/kml/paddle/red-circle.png",
+            });
+
             infoWindow.setPosition(pos);
             infoWindow.setContent("現在地が取得できました");
-            infoWindow.open(map);
+            infoWindow.open(map, marker);
             map.setCenter(pos);
           },
           () => {
