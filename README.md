@@ -10,22 +10,22 @@
 |トップ画面 |カード一覧・検索機能|
 |:--:|:--:|
 |<a href="https://gyazo.com/e7d86e337092d2b4e857b1fdbafe1b64"><img src="https://i.gyazo.com/e7d86e337092d2b4e857b1fdbafe1b64.gif" alt="Image from Gyazo" width="280"/></a>|<a href="https://gyazo.com/778438deab8f2a6e04be565eb37f8a38"><img src="https://i.gyazo.com/778438deab8f2a6e04be565eb37f8a38.gif" alt="Image from Gyazo" width="278"/></a>|
-|アプリの使用場面とログイン後に使える機能を紹介しています|リストで投稿の一覧を確認でき、店名・場所・ジャンルのでの検索も可能です|
+|アプリの使用場面とログイン後に使える機能を紹介しています|投稿の一覧をリストで確認でき、店名・場所・ジャンルでの検索も可能です|
 
 |地図一覧|地図検索・現在地取得|
 |:--:|:--:|
 |<a href="https://gyazo.com/0cb6bfd92b5778d9dbf4a8bdb566443c"><img src="https://i.gyazo.com/0cb6bfd92b5778d9dbf4a8bdb566443c.gif" alt="Image from Gyazo" width="276"/></a>|<a href="https://gyazo.com/5bf26dbcc401bdc666312702ea407a88"><img src="https://i.gyazo.com/5bf26dbcc401bdc666312702ea407a88.gif" alt="Image from Gyazo" width="280"/></a>|
-|地図上で投稿一覧を確認でき、ピンをタップするとモーダルが開きます|現在地を地図上に反映したり、店名・場所・ジャンルでの検索機能でお店を探せます|
+|地図上で投稿一覧を確認でき、ピンをタップするとモーダルが開きます|現在地や店名・場所・ジャンルでの検索からお店を探せます|
 
 |投稿詳細|投稿共有の動的OGP|
 |:--:|:--:|
 |<a href="https://gyazo.com/17a9a4cf2be63a13c98090194613ff21"><img src="https://i.gyazo.com/17a9a4cf2be63a13c98090194613ff21.gif" alt="Image from Gyazo" width="270" height="auto"/></a>|<a href="https://gyazo.com/b21be5cabb491d106510fd7f0408acbb"><img src="https://i.gyazo.com/b21be5cabb491d106510fd7f0408acbb.png" alt="Image from Gyazo" width="270" height="auto"/></a>|
-|各投稿の詳細画面では表で情報をまとめています。|詳細ボタンから各投稿のシェアを行うとその投稿の写真が動的OGPとして表示されます|
+|各投稿の詳細画面では表を使って情報をまとめています|詳細ボタンから各投稿のシェアを行うとその投稿の写真が動的OGPとして表示されます|
 
 |投稿作成🔑|ブックマーク機能🔑|
 |:--:|:--:|
 |<a href="https://gyazo.com/3df4b956a17396fa7142aeb35b7aa947"><img src="https://i.gyazo.com/3df4b956a17396fa7142aeb35b7aa947.gif" alt="Image from Gyazo" width="270"/></a>|<a href="https://gyazo.com/dd6c57af2e9267129c869a6aea296d79"><img src="https://i.gyazo.com/dd6c57af2e9267129c869a6aea296d79.gif" alt="Image from Gyazo" width="270" height="auto"/></a>|
-|住所のオートコンプリート、直感的なレーティング、おすすめのタグによってひとり外食の投稿を作成可能です|気になるお店をサクサクブックマークして、マイページでまとめて確認できます|
+|住所のオートコンプリート、直感的なレーティング、おすすめのタグによってひとり外食の投稿を作成可能です|気になるお店をブックマークしてマイページでまとめて確認できます|
 
 ## ■ 使用技術
 | カテゴリー | 使用技術 |
