@@ -19,12 +19,12 @@
 
 |投稿詳細|投稿共有の動的OGP|
 |:--:|:--:|
-|<a href="https://gyazo.com/17a9a4cf2be63a13c98090194613ff21"><img src="https://i.gyazo.com/17a9a4cf2be63a13c98090194613ff21.gif" alt="Image from Gyazo" width="450" height="auto"/></a>|<a href="https://gyazo.com/b21be5cabb491d106510fd7f0408acbb"><img src="https://i.gyazo.com/b21be5cabb491d106510fd7f0408acbb.png" alt="Image from Gyazo" width="270" height="auto"/></a>|
+|<a href="https://gyazo.com/17a9a4cf2be63a13c98090194613ff21"><img src="https://i.gyazo.com/17a9a4cf2be63a13c98090194613ff21.gif" alt="Image from Gyazo" width="270" height="auto"/></a>|<a href="https://gyazo.com/b21be5cabb491d106510fd7f0408acbb"><img src="https://i.gyazo.com/b21be5cabb491d106510fd7f0408acbb.png" alt="Image from Gyazo" width="270" height="auto"/></a>|
 |各投稿の詳細画面では表で情報をまとめています。|詳細ボタンから各投稿のシェアを行うとその投稿の写真が動的OGPとして表示されます|
 
 |投稿作成🔑|ブックマーク機能🔑|
 |:--:|:--:|
-|<a href="https://gyazo.com/3df4b956a17396fa7142aeb35b7aa947"><img src="https://i.gyazo.com/3df4b956a17396fa7142aeb35b7aa947.gif" alt="Image from Gyazo" width="250"/></a>|<a href="https://gyazo.com/dd6c57af2e9267129c869a6aea296d79"><img src="https://i.gyazo.com/dd6c57af2e9267129c869a6aea296d79.gif" alt="Image from Gyazo" width="400" height="auto"/></a>|
+|<a href="https://gyazo.com/3df4b956a17396fa7142aeb35b7aa947"><img src="https://i.gyazo.com/3df4b956a17396fa7142aeb35b7aa947.gif" alt="Image from Gyazo" width="270"/></a>|<a href="https://gyazo.com/dd6c57af2e9267129c869a6aea296d79"><img src="https://i.gyazo.com/dd6c57af2e9267129c869a6aea296d79.gif" alt="Image from Gyazo" width="270" height="auto"/></a>|
 |住所のオートコンプリート、直感的なレーティング、おすすめのタグによってひとり外食の投稿を作成可能です|気になるお店をサクサクブックマークして、マイページでまとめて確認できます|
 
 ## ■ 使用技術
