@@ -87,7 +87,8 @@ group :development, :test do
   gem 'rubocop-rspec'
 
   # rspec
-  gem 'rspec-rails', '~> 6.1.0'
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
 
   # debug
   gem 'pry-byebug'
