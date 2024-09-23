@@ -38,8 +38,8 @@ jobs:
       - name: Database create and migrate
         run: |
           cp config/database.ci.yml config/database.yml
-          RAILS_ENV=test bundle exec rake db:create
-          RAILS_ENV=test bundle exec rake db:migrate
+          bundle exec rails db:create RAILS_ENV=test
+          bundle exec rails db:migrate RAILS_ENV=test
   
       - name: Run rspec
         run: bundle exec rspec
@@ -61,7 +61,7 @@ jobs:
 
   deploy:
     if: github.ref == 'refs/heads/main'
-    needs: rubocop
+    needs: rubocop, rspec
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
