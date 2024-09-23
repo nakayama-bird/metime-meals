@@ -33,13 +33,13 @@
 ## ■ 使用技術
 | カテゴリー | 使用技術 |
 :----|:----
-| フロントエンド | Rails 7.1.3.4, TailwindCSS, DaisyUI  Javascript|
+| フロントエンド | Rails 7.1.3.4 / TailwindCSS / DaisyUI / Javascript|
 | バックエンド | Rails 7.1.3.4 (ruby 3.2.3)  |
 | インフラ | heroku / AmazonS3 |
 | DB | MySQL |
 | 開発環境 | Docker |
 | CI/CD |GitHub Actions|
-| Web API | Google Maps API（Places API / Maps JavaScript API / Geolocation API）, Cloud Vision API|
+| Web API | Google Maps API（Places API / Maps JavaScript API / Geolocation API）/ Cloud Vision API|
 
 ## ■ 画面遷移図
 [リンク](https://www.figma.com/design/MjY3Xjh4caHqLA78iD3zfW/metime_meals_画面遷移図?node-id=0-1)
