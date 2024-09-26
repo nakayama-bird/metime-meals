@@ -8,6 +8,8 @@ class AvatarUploader < CarrierWave::Uploader::Base
     storage :file
   elsif Rails.env.test?
     storage :file
+    config.enable_processing = false
+    config.skip_ssrf_protection = true
   else
     storage :fog
   end
