@@ -1,48 +1,62 @@
-name: rubocop, deploy
+name: rubocop, rspec, deploy
 
 on:
   push:
     branches:
   
 jobs:
-  # rspec:
-  #   runs-on: ubuntu-latest
-  #   timeout-minutes: 10
-  #   services:
-  #     mysql:
-  #       image: mysql:8.0
-  #       ports:
-  #         - 3307:3306
-  #       env:
-  #         MYSQL_ROOT_PASSWORD: password
-  #         MYSQL_ROOT_HOST: '%'
-  #       options: --health-cmd "mysqladmin ping -h 127.0.0.1" --health-interval 20s --health-timeout 10s --health-retries 10
+  rspec:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    services:
+      mysql:
+        image: mysql:8.0
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+        options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
 
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v2
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-  #     - name: Set up Ruby
-  #       uses: ruby/setup-ruby@v1
-  #       with:
-  #         bundler-cache: true
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
-  #     - name: Bundler and gem install
-  #       run: |
-  #         gem install bundler
-  #         bundle install --jobs 4 --retry 3 --path vendor/bundle
+      - name: Bundler and gem install
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3 --path vendor/bundle
 
-  #     - name: Wait for MySQL
-  #       run: sleep 15
+      - name: Yarn install
+        run: yarn install --check-files
 
-  #     - name: Database create and migrate
-  #       run: |
-  #         cp config/database.ci.yml config/database.yml
-  #         bundle exec rails db:create RAILS_ENV=test
-  #         bundle exec rails db:migrate RAILS_ENV=test
+      - name: Wait for MySQL
+        run: sleep 15
+
+      - name: Database create and migrate
+        run: |
+          cp config/database.ci.yml config/database.yml
+          bundle exec rails db:create RAILS_ENV=test
+          bundle exec rails db:migrate RAILS_ENV=test
   
-  #     - name: Run rspec
-  #       run: bundle exec rspec
+      - name: Run rspec
+        run: RAILS_ENV=test bundle exec rspec
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
 
   rubocop:
     runs-on: ubuntu-latest
@@ -61,7 +75,9 @@ jobs:
 
   deploy:
     if: github.ref == 'refs/heads/main'
-    needs: rubocop
+    needs: 
+      - rubocop
+      - rspec
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
