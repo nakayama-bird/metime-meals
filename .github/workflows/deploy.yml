@@ -34,6 +34,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
+      - name: Clear Bundle Cache
+        run: rm -rf vendor/bundle
+
       - name: Bundler and gem install
         run: |
           gem install bundler
