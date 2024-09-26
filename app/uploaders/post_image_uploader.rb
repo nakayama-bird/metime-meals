@@ -8,6 +8,7 @@ class PostImageUploader < CarrierWave::Uploader::Base
     storage :file
   elsif Rails.env.test?
     storage :file
+    config.enable_processing = false
   else
     storage :fog
   end
