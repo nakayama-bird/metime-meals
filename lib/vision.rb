@@ -13,6 +13,7 @@ module Vision
 
     private
 
+    # HTTP POSTリクエストを作成・送信
     def send_request(image_file)
       uri = URI.parse(api_url)
       request = Net::HTTP::Post.new(uri.request_uri)
@@ -28,6 +29,7 @@ module Vision
       "https://vision.googleapis.com/v1/images:annotate?key=#{ENV['GOOGLE_API_KEY']}"
     end
 
+    # リクエストボディの作成
     def build_request_body(image_file)
       base64_image = Base64.encode64(image_file.tempfile.read)
       {
@@ -47,6 +49,7 @@ module Vision
       raise error['message'] if error.present?
     end
 
+    # 結果の判定
     def safe_search_results(result)
       result_arr = result.dig('responses', 0, 'safeSearchAnnotation').values
       !(result_arr.include?('VERY_LIKELY') || result_arr.include?('LIKELY'))

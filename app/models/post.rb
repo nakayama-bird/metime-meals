@@ -12,6 +12,7 @@ class Post < ApplicationRecord
   validates :address, presence: true
   validates :body, presence: true, length: { maximum: 65_535 }
   validates :genre, presence: true
+  validates :rating, presence: true
   validates :post_images, length: { maximum: 3 }
   before_validation :validate_tag_count
 
