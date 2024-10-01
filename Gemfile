@@ -90,6 +90,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'simplecov', require: false
+  gem "webdrivers"
 
   # debug
   gem 'pry-byebug'
