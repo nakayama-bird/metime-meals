@@ -42,9 +42,6 @@ jobs:
       - name: Yarn install
         run: yarn install --check-files
 
-      - name: Chrome Install
-        run: sudo apt-get install google-chrome-stable
-
       - name: Wait for MySQL
         run: sleep 15
 
@@ -53,6 +50,7 @@ jobs:
           cp config/database.ci.yml config/database.yml
           bundle exec rails db:create RAILS_ENV=test
           bundle exec rails db:migrate RAILS_ENV=test
+          bundle exec rake assets:precompile
   
       - name: Run rspec
         run: RAILS_ENV=test bundle exec rspec
