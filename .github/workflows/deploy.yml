@@ -50,6 +50,9 @@ jobs:
           cp config/database.ci.yml config/database.yml
           bundle exec rails db:create RAILS_ENV=test
           bundle exec rails db:migrate RAILS_ENV=test
+
+      - name: Chrome Install
+        run: sudo apt-get install google-chrome-stable
   
       - name: Run rspec
         run: RAILS_ENV=test bundle exec rspec
