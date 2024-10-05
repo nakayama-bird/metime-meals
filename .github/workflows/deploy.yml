@@ -42,6 +42,9 @@ jobs:
       - name: Yarn install
         run: yarn install --check-files
 
+      - name: Chrome Install
+        run: sudo apt-get install google-chrome-stable
+
       - name: Wait for MySQL
         run: sleep 15
 
