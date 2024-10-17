@@ -1,6 +1,6 @@
 require 'rails_helper'
 RSpec.describe 'Users', type: :system do
-  let(:user){ create(:user) }
+  let(:user) { create(:user) }
   describe 'ログイン前' do
     describe 'ユーザーの新規登録' do
       context 'フォームの入力値が正常' do
@@ -54,6 +54,36 @@ RSpec.describe 'Users', type: :system do
           expect(current_path).to eq login_path
         end
       end
+    end
+  end
+
+  describe 'ログイン後' do
+    before { login_as(user) }
+
+    describe 'ユーザー編集' do
+      context 'フォームの入力値が正常' do
+        it 'ユーザーの編集が成功する' do
+          visit edit_mypage_profiles_path(user)
+          fill_in '名前', with: '太郎'
+          select '女性', from: 'user_gender'
+          select '20代', from: 'user_age'
+          click_button '登録'
+          expect(page).to have_content('ユーザー情報の更新に成功しました')
+          expect(current_path).to eq mypage_profiles_path
+        end
+      end
+
+      context  '名前が未入力' do
+        it 'ユーザーの編集が失敗する' do
+          visit edit_mypage_profiles_path(user)
+          fill_in '名前', with: ''
+          click_button '登録'
+          expect(page).to have_content 'ユーザー情報の更新に失敗しました'
+          expect(page).to have_content '名前を入力してください'
+          expect(current_path).to eq  mypage_profiles_path
+        end
+      end
+
     end
   end
 end
