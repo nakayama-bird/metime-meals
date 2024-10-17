@@ -5,5 +5,6 @@ module LoginMacros
     fill_in 'メールアドレス', with: user.email
     fill_in 'パスワード', with: 'password'
     click_button 'ログイン'
+    visit current_path
   end
 end
