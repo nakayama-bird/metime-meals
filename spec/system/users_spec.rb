@@ -83,7 +83,31 @@ RSpec.describe 'Users', type: :system do
           expect(current_path).to eq  mypage_profiles_path
         end
       end
-
+    end
+    describe 'マイページ' do
+      context '投稿を作成' do
+        it '新規作成した投稿が表示される' do
+          create(:post, restaurant_name: 'レストランテスト', body: 'とてもおいしい', user: user )
+          visit mypage_posts_path
+          expect(page).to have_content('レストランテスト')
+          expect(page).to have_content('とてもおいしい')
+        end
+      end
+      # 投稿を作成
+      # その投稿をお気に入り
+      # 自分のお気に入り一覧で表示
+      context '投稿をお気に入り' do
+        it 'お気に入りした投稿が表示される' do
+          post = create(:post, restaurant_name: 'レストランお気に', body: 'とてもおいしいな', user: user )
+          visit post_path(post)
+          link = find("#bookmark-button-for-post-#{post.id}")
+          link.click
+          visit current_path
+          visit mypage_bookmark_posts_path
+          expect(page).to have_content('レストランお気に')
+          expect(page).to have_content('とてもおいしいな')
+        end
+      end
     end
   end
 end
