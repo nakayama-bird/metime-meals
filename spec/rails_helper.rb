@@ -56,6 +56,11 @@ RSpec.configure do |config|
     end
   end
 
+  # スクショの削除
+  config.before(:all) do
+    FileUtils.rm_rf(Dir[Rails.root.join("tmp", "capybara", "*")], secure: true) unless ENV["CI"]
+  end
+
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
 
