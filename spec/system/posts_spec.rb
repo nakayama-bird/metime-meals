@@ -47,4 +47,27 @@ RSpec.describe 'Posts', type: :system do
       end
     end
   end
+
+  describe 'ログイン後' do
+  before { login_as(user) }
+
+    describe '投稿編集' do
+      context '他ユーザーの投稿編集ページにアクセス' do
+        xit '編集ページへのアクセスが失敗する' do
+          # アクセス禁止に関わる処理を実装していないためスキップ
+        end
+      end
+    end
+
+    describe '投稿削除' do
+      it '投稿の削除が成功する' do
+        post = create(:post, user: user, restaurant_name: 'レストラン削除', body: 'さようなら')
+        visit post_path(post)
+        click_on '削除'
+        page.accept_alert '投稿を削除しますか？'
+        expect(page).to have_content('投稿を削除しました')
+        expect(current_path).to eq posts_path
+      end
+    end
+  end
 end
