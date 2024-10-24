@@ -63,6 +63,7 @@ RSpec.describe 'Posts', type: :system do
           expect(page).to have_content '投稿に成功しました'
           expect(page).to have_content '中華料理'
           expect(current_path).to eq posts_path
+          puts page.body
         end
       end
 
