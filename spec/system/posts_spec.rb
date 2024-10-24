@@ -56,8 +56,8 @@ RSpec.describe 'Posts', type: :system do
         it '新規投稿作成が成功する' do
           visit  new_post_path
           select '中華料理', from: 'post_genre'
-          fill_in 'post[restaurant_name]', with: 'こんにゃくパーク' # オートコンプリートの都合上post[restaurant_name]で指定
-          fill_in 'post[address]', with: '日本、〒370-2202 群馬県甘楽郡甘楽町小幡２０４−１' # オートコンプリートの都合上post[address]で指定
+          fill_in 'autocomplete', with: 'こんにゃくパーク' # オートコンプリートの都合上autocompleteで指定
+          fill_in 'address', with: '日本、〒370-2202 群馬県甘楽郡甘楽町小幡２０４−１' # オートコンプリートの都合上addressで指定
           fill_in 'ひとり外食おすすめポイント', with: 'たくさんこんにゃく食べれます。コニャックじゃないよ。'
           click_button '投稿'
           expect(page).to have_content '投稿に成功しました'
@@ -70,8 +70,8 @@ RSpec.describe 'Posts', type: :system do
         it 'おすすめタグを含んだ新規投稿作成が成功する' do
           visit  new_post_path
           select '中華料理', from: 'post_genre'
-          fill_in 'post[restaurant_name]', with: 'こんにゃくパーク' # オートコンプリートの都合上post[restaurant_name]で指定
-          fill_in 'post[address]', with: '日本、〒370-2202 群馬県甘楽郡甘楽町小幡２０４−１' # オートコンプリートの都合上post[address]で指定
+          fill_in 'autocomplete', with: 'こんにゃくパーク' # オートコンプリートの都合上autocompleteで指定
+          fill_in 'address', with: '日本、〒370-2202 群馬県甘楽郡甘楽町小幡２０４−１' # オートコンプリートの都合上addressで指定
           fill_in 'ひとり外食おすすめポイント', with: 'たくさんこんにゃく食べれます。コニャックじゃないよ。'
           click_link 'ひとり用メニュー'
           click_button '投稿'
@@ -85,8 +85,8 @@ RSpec.describe 'Posts', type: :system do
         it 'レーティングを含んだ新規投稿作成が成功する' do
           visit  new_post_path
           select '中華料理', from: 'post_genre'
-          fill_in 'post[restaurant_name]', with: 'こんにゃくパーク' # オートコンプリートの都合上post[restaurant_name]で指定
-          fill_in 'post[address]', with: '日本、〒370-2202 群馬県甘楽郡甘楽町小幡２０４−１' # オートコンプリートの都合上post[address]で指定
+          fill_in 'autocomplete', with: 'こんにゃくパーク' # オートコンプリートの都合上autocompleteで指定
+          fill_in 'address', with: '日本、〒370-2202 群馬県甘楽郡甘楽町小幡２０４−１' # オートコンプリートの都合上addressで指定
           fill_in 'ひとり外食おすすめポイント', with: 'たくさんこんにゃく食べれます。コニャックじゃないよ。'
           choose 'post_rating_excellent'
           click_button '投稿'
@@ -99,8 +99,8 @@ RSpec.describe 'Posts', type: :system do
       context 'ジャンルが未入力' do
         it '新規投稿作成が失敗する' do
           visit  new_post_path
-          fill_in 'post[restaurant_name]', with: 'こんにゃくパーク' # オートコンプリートの都合上post[restaurant_name]で指定
-          fill_in 'post[address]', with: '日本、〒370-2202 群馬県甘楽郡甘楽町小幡２０４−１' # オートコンプリートの都合上post[address]で指定
+          fill_in 'autocomplete', with: 'こんにゃくパーク' # オートコンプリートの都合上autocompleteで指定
+          fill_in 'address', with: '日本、〒370-2202 群馬県甘楽郡甘楽町小幡２０４−１' # オートコンプリートの都合上addressで指定
           fill_in 'ひとり外食おすすめポイント', with: 'たくさんこんにゃく食べれます。コニャックじゃないよ。'
           click_button '投稿'
           expect(page).to have_content '投稿に失敗しました'
@@ -113,8 +113,8 @@ RSpec.describe 'Posts', type: :system do
         it '新規投稿作成が失敗する' do
           visit  new_post_path
           select '中華料理', from: 'post_genre'
-          fill_in 'post[restaurant_name]', with: '' # オートコンプリートの都合上post[restaurant_name]で指定
-          fill_in 'post[address]', with: '' # オートコンプリートの都合上post[address]で指定
+          fill_in 'autocomplete', with: '' # オートコンプリートの都合上autocompleteで指定
+          fill_in 'address', with: '' # オートコンプリートの都合上addressで指定
           fill_in 'ひとり外食おすすめポイント', with: 'たくさんこんにゃく食べれます。コニャックじゃないよ。'
           click_button '投稿'
           expect(page).to have_content '投稿に失敗しました'
@@ -128,8 +128,8 @@ RSpec.describe 'Posts', type: :system do
         it '新規投稿作成が失敗する' do
           visit  new_post_path
           select '中華料理', from: 'post_genre'
-          fill_in 'post[restaurant_name]', with: 'こんにゃくパーク' # オートコンプリートの都合上post[restaurant_name]で指定
-          fill_in 'post[address]', with: '日本、〒370-2202 群馬県甘楽郡甘楽町小幡２０４−１' # オートコンプリートの都合上post[address]で指定
+          fill_in 'autocomplete', with: 'こんにゃくパーク' # オートコンプリートの都合上autocompleteで指定
+          fill_in 'address', with: '日本、〒370-2202 群馬県甘楽郡甘楽町小幡２０４−１' # オートコンプリートの都合上addressで指定
           fill_in 'ひとり外食おすすめポイント', with: ''
           click_button '投稿'
           expect(page).to have_content '投稿に失敗しました'
